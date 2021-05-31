@@ -7,7 +7,7 @@
             <h2>Edit Post</h2>
         </div>
         <div class="float-right">
-            <a class="btn btn-secondary" href="{{ route('tennant.index') }}"> Back</a>
+            <a class="btn btn-secondary" href="<?php echo route('tennant.index') ?>"> Back</a>
         </div>
     </div>
 </div>
@@ -17,13 +17,13 @@
     <strong>Whoops!</strong> There were some problems with your input.<br><br>
     <ul>
         @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
+        <li><?php echo $error ?></li>
         @endforeach
     </ul>
 </div>
 @endif
 
-<form action="{{ route('tennant.update',$tennant->id) }}" method="POST">
+<form action="<?php echo route('tennant.update',$tennant->id) ?>" method="POST">
     @csrf
     @method('PUT')
 
@@ -31,49 +31,55 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama Tennant:</strong>
-                <input type="text" name="nama_tennant" value="{{ $tennant->nama_tennant }}" class="form-control" placeholder="Nama Tennant">
+                <input type="text" name="nama_tennant" value="<?php echo $tennant->nama_tennant ?>" class="form-control" placeholder="Nama Tennant">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Lantai:</strong>
-                <!-- <input type="text" name="id_lantai" value="{{ $tennant->id_lantai }}" class="form-control" placeholder="id_lantai"> -->
+                <!-- <input type="text" name="id_lantai" value="<?php echo $tennant->id_lantai ?>" class="form-control" placeholder="id_lantai"> -->
                 <select class="form-control m-bot15" name="id_lantai">
                     <option value="">Pilih Lantai</option>
                     @foreach ($lantais as $lantai)
-                    <option value="{{ $lantai->id }" <?php echo ( $tennant->id_lantai == $lantai->id) ? 'selected' : '' ?> >{{ $lantai->nama_lantai }}</option>
+                    <option value="<?php echo $lantai->id ?>" <?php echo ( $tennant->id_lantai == $lantai->id) ? 'selected' : '' ?> ><?php echo $lantai->nama_lantai ?></option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Kategori: {{ $tennant->id_kategori}}</strong>
-                <select class="form-control m-bot15" name="id_lantai">
+                <strong>Kategori: <?php echo $tennant->id_kategori ?></strong>
+                <select class="form-control m-bot15" name="id_kategori">
                     <option value="">Pilih kategori</option>
                     @foreach ($kategoris as $kategori)
-                    <option value="{{ $kategori->id }}"   <?php echo ( $kategori->id == $tennant->id_lantai) ? 'selected' : ''  ?>>{{ $kategori->nama_kategori }}</option>
+                    <option value="<?php echo $kategori->id ?>"   <?php echo ( $kategori->id == $tennant->id_kategori) ? 'selected' : ''  ?>><?php echo $kategori->nama_kategori ?></option>
                     @endforeach
                 </select>
-                <!-- <input type="text" name="id_kategori" value="{{ $tennant->id_kategori }}" class="form-control" placeholder="id_kategori"> -->
+                <!-- <input type="text" name="id_kategori" value="<?php echo $tennant->id_kategori ?>" class="form-control" placeholder="id_kategori"> -->
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>panjang:</strong>
-                <input type="text" name="panjang" value="{{ $tennant->panjang }}" class="form-control" placeholder="panjang">
+                <input type="text" name="panjang" value="<?php echo $tennant->panjang ?>" class="form-control" placeholder="panjang">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>lebar:</strong>
-                <input type="text" name="lebar" value="{{ $tennant->lebar }}" class="form-control" placeholder="lebar">
+                <input type="text" name="lebar" value="<?php echo $tennant->lebar ?>" class="form-control" placeholder="lebar">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>gambar:</strong>
-                <input type="text" name="gambar" value="{{ $tennant->gambar }}" class="form-control" placeholder="gambar">
+                <input type="text" name="gambar" value="<?php echo $tennant->gambar ?>" class="form-control" placeholder="gambar">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Harga:</strong>
+                <input type="text" name="harga" value="<?php echo $tennant->harga ?>" class="form-control" placeholder="harga">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -17,7 +17,7 @@ class TennantController extends Controller
     public function index()
     {
         $tennant = DB::table('tennants')
-        ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar')
+        ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar','harga')
         ->join('lantai', 'tennants.id_lantai', '=', 'lantai.id')
         ->join('kategoris', 'tennants.id_kategori', '=', 'kategoris.id')
 
@@ -47,6 +47,7 @@ class TennantController extends Controller
      */
     public function store(Request $request)
     {
+       dd($request->all());
        $request->validate([
         'nama_tennant' => 'required',
         'id_lantai' => 'required',
@@ -54,11 +55,26 @@ class TennantController extends Controller
         'lebar' => 'required',
         'panjang' => 'required',
         'gambar' => 'required',
+        'harga' => 'required',
+    ]);
+       $gambar = $request->gambar;
+       $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
+//Kemudian di simpan di storage dengan nama yang ditentukan tadi
+       $gambar->storeAs('public/images', $filename);
+//Nama ini juga disimpan ke kolom, misal ke artikel
+
+       tennant::create([
+        'nama_tennant' => $request->nama_tennat,
+        'id_lantai' => $request->id_lantai,
+        'id_kategori' => $request->id_kategori,
+        'lebar' => $request->lebar,
+        'panjang' => $request->panjang,
+        'gambar'     => $filename,
+        'harga' => $request->harga,
     ]);
 
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
-       tennant::create($request->all());
 
         /// redirect jika sukses menyimpan data
        return redirect()->route('tennant.index')
@@ -84,10 +100,10 @@ class TennantController extends Controller
      */
     public function edit(tennant $tennant)
     {
-       $kategoris = kategori::all();
-       $lantais = lantai::all();
-       return view('tennant.edit',compact('tennant','kategoris','lantais'));
-   }
+     $kategoris = kategori::all();
+     $lantais = lantai::all();
+     return view('tennant.edit',compact('tennant','kategoris','lantais'));
+ }
 
     /**
      * Update the specified resource in storage.
@@ -100,13 +116,14 @@ class TennantController extends Controller
     {
         /// membuat validasi untuk title dan content wajib diisi
         $request->validate([
-         'nama_tennant' => 'required',
-         'id_lantai' => 'required',
-         'id_kategori' => 'required',
-         'lebar' => 'required',
-         'panjang' => 'required',
-         'gambar' => 'required',
-     ]);
+           'nama_tennant' => 'required',
+           'id_lantai' => 'required',
+           'id_kategori' => 'required',
+           'lebar' => 'required',
+           'panjang' => 'required',
+           'gambar' => 'required',
+           'harga' => 'required',
+       ]);
 
         /// mengubah data berdasarkan request dan parameter yang dikirimkan
         $tennant->update($request->all());
