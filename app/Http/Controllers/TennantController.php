@@ -19,7 +19,7 @@ class TennantController extends Controller
     public function index()
     {
         $tennant = DB::table('tennants')
-        ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar','harga')
+        ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar')
         ->join('lantai', 'tennants.id_lantai', '=', 'lantai.id')
         ->join('kategoris', 'tennants.id_kategori', '=', 'kategoris.id')
 
@@ -49,7 +49,10 @@ class TennantController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
        // dd($request->all());
+=======
+>>>>>>> parent of c37f8ff (images)
        $request->validate([
         'nama_tennant' => 'required',
         'id_lantai' => 'required',
@@ -57,6 +60,7 @@ class TennantController extends Controller
         'lebar' => 'required',
         'panjang' => 'required',
         'gambar' => 'required',
+<<<<<<< HEAD
         'harga' => 'required',
     ]);
        $gambar = $request->gambar;
@@ -73,11 +77,14 @@ class TennantController extends Controller
         'panjang' => $request->panjang,
         'gambar'     => $filename,
         'harga' => $request->harga,
+=======
+>>>>>>> parent of c37f8ff (images)
     ]);
        // dd($tennant);
 
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
+       tennant::create($request->all());
 
         /// redirect jika sukses menyimpan data
        return redirect()->route('tennant.index')
@@ -103,10 +110,10 @@ class TennantController extends Controller
      */
     public function edit(tennant $tennant)
     {
-     $kategoris = kategori::all();
-     $lantais = lantai::all();
-     return view('tennant.edit',compact('tennant','kategoris','lantais'));
- }
+       $kategoris = kategori::all();
+       $lantais = lantai::all();
+       return view('tennant.edit',compact('tennant','kategoris','lantais'));
+   }
 
     /**
      * Update the specified resource in storage.
@@ -119,6 +126,7 @@ class TennantController extends Controller
     {
         /// membuat validasi untuk title dan content wajib diisi
         $request->validate([
+<<<<<<< HEAD
            'nama_tennant' => 'required',
            'id_lantai' => 'required',
            'id_kategori' => 'required',
@@ -127,6 +135,15 @@ class TennantController extends Controller
            'harga' => 'required',
        ]);
         $gambar = $request->gambar;
+=======
+         'nama_tennant' => 'required',
+         'id_lantai' => 'required',
+         'id_kategori' => 'required',
+         'lebar' => 'required',
+         'panjang' => 'required',
+         'gambar' => 'required',
+     ]);
+>>>>>>> parent of c37f8ff (images)
 
         $filename = $request->nama_gambar;
         if ($filename=='') {

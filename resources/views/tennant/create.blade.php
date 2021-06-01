@@ -23,7 +23,7 @@
 </div>
 @endif
 
-<form action="{{ route('tennant.store') }}" method="POST" enctype="multipart/form-data" >
+<form action="{{ route('tennant.store') }}" method="POST">
     @csrf
 
     <div class="row">
@@ -72,13 +72,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Gambar</strong>
-                <input type="file" name="gambar" class="form-control" placeholder="Gambar">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Harga</strong>
-                <input type="text" name="harga" class="form-control" placeholder="Harga">
+                <input type="text" name="gambar" class="form-control" placeholder="Gambar">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
