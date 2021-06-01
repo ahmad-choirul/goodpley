@@ -24,7 +24,11 @@
 @endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <form action="<?php echo route('tennant.update',$tennant->id) ?>" method="POST"  enctype="multipart/form-data" >
+=======
+<form action="{{ route('tennant.update',$tennant->id) }}" method="POST">
+>>>>>>> parent of c37f8ff (images)
 =======
 <form action="{{ route('tennant.update',$tennant->id) }}" method="POST">
 >>>>>>> parent of c37f8ff (images)
@@ -78,6 +82,7 @@
             <div class="form-group">
                 <strong>gambar:</strong>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <img src=" {{ asset('storage/images/'.$tennant->gambar) }}">
                 <input type="file" name="gambar" class="form-control" placeholder="Gambar">
                 <input type="hidden" name="nama_gambar" value="<?php echo $tennant->gambar ?>" class="form-control" placeholder="lebar">
@@ -90,6 +95,9 @@
             <div class="form-group">
                 <strong>Harga:</strong>
                 <input type="text" name="harga" value="<?php echo $tennant->harga ?>" class="form-control" placeholder="harga">
+=======
+                <input type="text" name="gambar" value="{{ $tennant->gambar }}" class="form-control" placeholder="gambar">
+>>>>>>> parent of c37f8ff (images)
 =======
                 <input type="text" name="gambar" value="{{ $tennant->gambar }}" class="form-control" placeholder="gambar">
 >>>>>>> parent of c37f8ff (images)

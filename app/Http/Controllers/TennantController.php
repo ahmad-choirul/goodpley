@@ -50,7 +50,10 @@ class TennantController extends Controller
     public function store(Request $request)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
        // dd($request->all());
+=======
+>>>>>>> parent of c37f8ff (images)
 =======
 >>>>>>> parent of c37f8ff (images)
        $request->validate([
@@ -60,6 +63,7 @@ class TennantController extends Controller
         'lebar' => 'required',
         'panjang' => 'required',
         'gambar' => 'required',
+<<<<<<< HEAD
 <<<<<<< HEAD
         'harga' => 'required',
     ]);
@@ -77,6 +81,8 @@ class TennantController extends Controller
         'panjang' => $request->panjang,
         'gambar'     => $filename,
         'harga' => $request->harga,
+=======
+>>>>>>> parent of c37f8ff (images)
 =======
 >>>>>>> parent of c37f8ff (images)
     ]);
@@ -127,6 +133,7 @@ class TennantController extends Controller
         /// membuat validasi untuk title dan content wajib diisi
         $request->validate([
 <<<<<<< HEAD
+<<<<<<< HEAD
            'nama_tennant' => 'required',
            'id_lantai' => 'required',
            'id_kategori' => 'required',
@@ -136,6 +143,8 @@ class TennantController extends Controller
        ]);
         $gambar = $request->gambar;
 =======
+=======
+>>>>>>> parent of c37f8ff (images)
          'nama_tennant' => 'required',
          'id_lantai' => 'required',
          'id_kategori' => 'required',
@@ -143,6 +152,9 @@ class TennantController extends Controller
          'panjang' => 'required',
          'gambar' => 'required',
      ]);
+<<<<<<< HEAD
+>>>>>>> parent of c37f8ff (images)
+=======
 >>>>>>> parent of c37f8ff (images)
 
         $filename = $request->nama_gambar;

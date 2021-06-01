@@ -38,8 +38,12 @@
             <td>{{ $post->lebar }}</td>
             <td>{{ $post->panjang }}</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <td>{{ $post->harga }}</td>
             <td><img src=" {{ asset('storage/images/'.$post->gambar) }}" width="100px"> </td>
+=======
+            <td>{{ $post->gambar }}</td>
+>>>>>>> parent of c37f8ff (images)
 =======
             <td>{{ $post->gambar }}</td>
 >>>>>>> parent of c37f8ff (images)
