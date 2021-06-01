@@ -7,6 +7,8 @@ use App\Models\tennant;
 use App\Models\kategori;
 use App\Models\lantai;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 class TennantController extends Controller
 {
     /**
@@ -47,7 +49,7 @@ class TennantController extends Controller
      */
     public function store(Request $request)
     {
-       dd($request->all());
+       // dd($request->all());
        $request->validate([
         'nama_tennant' => 'required',
         'id_lantai' => 'required',
@@ -63,8 +65,8 @@ class TennantController extends Controller
        $gambar->storeAs('public/images', $filename);
 //Nama ini juga disimpan ke kolom, misal ke artikel
 
-       tennant::create([
-        'nama_tennant' => $request->nama_tennat,
+       $tennant = tennant::create([
+        'nama_tennant' => $request->nama_tennant,
         'id_lantai' => $request->id_lantai,
         'id_kategori' => $request->id_kategori,
         'lebar' => $request->lebar,
@@ -72,6 +74,7 @@ class TennantController extends Controller
         'gambar'     => $filename,
         'harga' => $request->harga,
     ]);
+       // dd($tennant);
 
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
@@ -124,14 +127,31 @@ class TennantController extends Controller
            'gambar' => 'required',
            'harga' => 'required',
        ]);
+        $gambar = $request->gambar;
 
+        $filename = $request->nama_gambar;
+        if ($filename=='') {
+           $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
+           
+       }
+//Kemudian di simpan di storage dengan nama yang ditentukan tadi
+       $gambar->storeAs('public/images', $filename);
+//Nama ini juga disimpan ke kolom, misal ke artikel
         /// mengubah data berdasarkan request dan parameter yang dikirimkan
-        $tennant->update($request->all());
-
+       // $tennant->update($request->all());
+ $tennant = tennant::update([
+        'nama_tennant' => $request->nama_tennant,
+        'id_lantai' => $request->id_lantai,
+        'id_kategori' => $request->id_kategori,
+        'lebar' => $request->lebar,
+        'panjang' => $request->panjang,
+        'gambar'     => $filename,
+        'harga' => $request->harga,
+    ]);
         /// setelah berhasil mengubah data
-        return redirect()->route('tennant.index')
-        ->with('success','Data berhasil di ubah');
-    }
+       return redirect()->route('tennant.index')
+       ->with('success','Data berhasil di ubah');
+   }
 
     /**
      * Remove the specified resource from storage.

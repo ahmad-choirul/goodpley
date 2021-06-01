@@ -23,7 +23,7 @@
 </div>
 @endif
 
-<form action="<?php echo route('tennant.update',$tennant->id) ?>" method="POST">
+<form action="<?php echo route('tennant.update',$tennant->id) ?>" method="POST"  enctype="multipart/form-data" >
     @csrf
     @method('PUT')
 
@@ -73,7 +73,9 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>gambar:</strong>
-                <input type="text" name="gambar" value="<?php echo $tennant->gambar ?>" class="form-control" placeholder="gambar">
+                <img src=" {{ asset('storage/images/'.$tennant->gambar) }}">
+                <input type="file" name="gambar" class="form-control" placeholder="Gambar">
+
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

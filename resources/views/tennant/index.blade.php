@@ -39,7 +39,7 @@
             <td>{{ $post->lebar }}</td>
             <td>{{ $post->panjang }}</td>
             <td>{{ $post->harga }}</td>
-            <td><img src=" {{ asset('storage/images/$variabel->gambar') }}"></td>
+            <td><img src=" {{ asset('storage/images/'.$post->gambar) }}" width="100px"> </td>
             <td class="text-center">
                 <form action="{{ route('tennant.destroy',$post->id) }}" method="POST">
  
