@@ -75,6 +75,9 @@
                 <strong>gambar:</strong>
                 <img src=" {{ asset('storage/images/'.$tennant->gambar) }}">
                 <input type="file" name="gambar" class="form-control" placeholder="Gambar">
+                <input type="hidden" name="nama_gambar" value="<?php echo $tennant->gambar ?>" class="form-control" placeholder="lebar">
+                <input type="hidden" name="id" value="<?php echo $tennant->id ?>" class="form-control" placeholder="lebar">
+
 
             </div>
         </div>

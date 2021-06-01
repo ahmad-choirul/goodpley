@@ -124,7 +124,6 @@ class TennantController extends Controller
            'id_kategori' => 'required',
            'lebar' => 'required',
            'panjang' => 'required',
-           'gambar' => 'required',
            'harga' => 'required',
        ]);
         $gambar = $request->gambar;
@@ -138,15 +137,15 @@ class TennantController extends Controller
        $gambar->storeAs('public/images', $filename);
 //Nama ini juga disimpan ke kolom, misal ke artikel
         /// mengubah data berdasarkan request dan parameter yang dikirimkan
-       // $tennant->update($request->all());
- $tennant = tennant::update([
+       // $tennant->update($request->all());\
+ $tennant = tennant::where('id', $request->id)->update([
         'nama_tennant' => $request->nama_tennant,
         'id_lantai' => $request->id_lantai,
         'id_kategori' => $request->id_kategori,
         'lebar' => $request->lebar,
         'panjang' => $request->panjang,
         'gambar'     => $filename,
-        'harga' => $request->harga,
+        'harga' => $request->harga
     ]);
         /// setelah berhasil mengubah data
        return redirect()->route('tennant.index')
