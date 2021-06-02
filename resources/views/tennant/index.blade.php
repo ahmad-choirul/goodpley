@@ -26,7 +26,6 @@
             <th>Kategori</th>
             <th>Lebar</th>
             <th>Panjang</th>
-            <th>Harga</th>
             <th>Gambar</th>
             <th width="280px"class="text-center">Action</th>
         </tr>
@@ -40,6 +39,7 @@
             <td>{{ $post->panjang }}</td>
             <td>{{ $post->harga }}</td>
             <td><img src=" {{ asset('storage/images/'.$post->gambar) }}" width="100px"> </td>
+            <td>{{ $post->gambar }}</td>
             <td class="text-center">
                 <form action="{{ route('tennant.destroy',$post->id) }}" method="POST">
  
