@@ -18,7 +18,8 @@ Route::resource('lantai', LantaiController::class);
 use App\Http\Controllers\kategoriController;
 Route::resource('kategori', kategoriController::class);
 use App\Http\Controllers\tennantController;
-Route::resource('tennant', tennantController::class);
+Route::resource('tennant', TennantController::class);
+Route::get('search', [TennantController::class, 'cari']);
 Route::get('/', function () {
     return view('welcome');
 });

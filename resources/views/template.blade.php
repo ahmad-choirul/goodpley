@@ -23,6 +23,7 @@
                     <li><a href="{{ route('lantai.index') }}">Data Lantai</a></li>
                     <li><a href="{{ route('kategori.index') }}">Kategori</a></li>
                     <li><a href="{{ route('tennant.index') }}">Tennant</a></li>
+                    <li><a href="{{ route('search') }}">Cari</a></li>
                     <li><a href="{{ route('tennant.index') }}">Marcom</a></li>
                     
                     

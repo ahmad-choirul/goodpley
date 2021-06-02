@@ -68,12 +68,14 @@
             <div class="form-group">
                 <strong>lebar:</strong>
                 <input type="text" name="lebar" value="<?php echo $tennant->lebar ?>" class="form-control" placeholder="lebar">
+                <input type="hidden" name="nama_gambar" value="<?php echo $tennant->gambar ?>" class="form-control" placeholder="lebar">
+                <input type="hidden" name="id" value="<?php echo $tennant->id ?>" class="form-control" placeholder="lebar">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>gambar:</strong>
-                <img src=" {{ asset('storage/images/'.$tennant->gambar) }}">
+                <img src=" {{ asset('storage/images/'.$tennant->gambar) }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
                 <input type="file" name="gambar" class="form-control" placeholder="Gambar">
 
             </div>
