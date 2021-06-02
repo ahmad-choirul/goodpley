@@ -21,17 +21,21 @@
                 <ul></ul>
                 <ul class="nav__links">
                     <li><a href="{{ route('lantai.index') }}">Data Lantai</a></li>
-                    <li><a href="{{ route('kategori.index') }}">Kategori</a></li>=
+                    <li><a href="{{ route('kategori.index') }}">Kategori</a></li>
                     <li><a href="{{ route('tennant.index') }}">Tennant</a></li>
                     <li><a href="{{ route('search') }}">Cari</a></li>
                     <li><a href="{{ route('tennant.index') }}">Marcom</a></li>
+                    
+                    
+
+
                 </ul>
             </nav>
         </div>
-        <div class="col-md-2">
+      <!--   <div class="col-md-2">
              <a class="cta" href="#">Contact</a>
             <p class="menu cta">Menu</p>
-        </div>
+        </div> -->
     </div>
            
            

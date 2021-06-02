@@ -19,7 +19,7 @@ class TennantController extends Controller
     public function index()
     {
         $tennant = DB::table('tennants')
-        ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar')
+        ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar','harga')
         ->join('lantai', 'tennants.id_lantai', '=', 'lantai.id')
         ->join('kategoris', 'tennants.id_kategori', '=', 'kategoris.id')
 
@@ -80,7 +80,6 @@ class TennantController extends Controller
         'lebar' => 'required',
         'panjang' => 'required',
         'gambar' => 'required',
-
         'harga' => 'required',
     ]);
      $gambar = $request->gambar;
@@ -98,13 +97,11 @@ class TennantController extends Controller
         'panjang' => $request->panjang,
         'gambar'     => $filename,
         'harga' => $request->harga,
-
     ]);
        // dd($tennant);
 
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
-       tennant::create($request->all());
 
         /// redirect jika sukses menyimpan data
      return redirect()->route('tennant.index')
@@ -155,6 +152,7 @@ class TennantController extends Controller
          'harga' => 'required',
      ]);
         $gambar = $request->gambar;
+
         $filename = $request->nama_gambar;
         if ($filename=='') {
          $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
@@ -164,14 +162,15 @@ class TennantController extends Controller
      $gambar->storeAs('public/images', $filename);
 //Nama ini juga disimpan ke kolom, misal ke artikel
         /// mengubah data berdasarkan request dan parameter yang dikirimkan
- $tennant = tennant::where('id', $request->id)->update([
+       // $tennant->update($request->all());
+     $tennant = tennant::where('id', $request->id)->update([
         'nama_tennant' => $request->nama_tennant,
         'id_lantai' => $request->id_lantai,
         'id_kategori' => $request->id_kategori,
         'lebar' => $request->lebar,
         'panjang' => $request->panjang,
         'gambar'     => $filename,
-        'harga' => $request->harga
+        'harga' => $request->harga,
     ]);
         /// setelah berhasil mengubah data
      return redirect()->route('tennant.index')

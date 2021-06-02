@@ -21,6 +21,7 @@ class CreateTennantsTable extends Migration
             $table->integer('lebar');
             $table->integer('panjang');
             $table->string('gambar');
+            $table->string('harga');
             $table->timestamps();
         });
         Schema::table('lantai',function($table)
