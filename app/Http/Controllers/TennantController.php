@@ -42,28 +42,48 @@ class TennantController extends Controller
     }
     public function cari(Request $request)
     {
+        DB::enableQueryLog(); // Enable query log
+
+// Your Eloquent query executed by using get()
+
         $cari['tglawal'] = $request->tglawal;
         $cari['tglakhir'] = $request->tglakhir;
         $cari['id_lantai'] = $request->id_lantai;
         $cari['id_kategori'] = $request->id_kategori;
-         $kategoris = kategori::all();
+        $tglawal=$cari['tglawal'];
+        $tglakhir=$cari['tglakhir'];
+        $kategoris = kategori::all();
         $lantais = lantai::all();
         $query = DB::table('tennants')
+        //SELECT * FROM `tennants` WHERE id not in(SELECT id_tennant FROM `sewas` WHERE tgl_akhir_sewa BETWEEN '2021-06-01' and '2021-06-20' or tgl_awal_sewa BETWEEN '2021-06-01' and '2021-06-20')
+
         ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar','harga')
         ->join('lantai', 'tennants.id_lantai', '=', 'lantai.id')
         ->join('kategoris', 'tennants.id_kategori', '=', 'kategoris.id');
-        // if ($tglawal!=''&&$tglakhir!='') {
-        //     // code...
-        // }
+         $query->orwhere('status','1');
+        if ($tglawal!=''&&$tglakhir!='') {
+            $resultidtennant[] = null;
+            $getidtennant= DB::table('sewas')->select('id_tennant')
+                ->from('sewas')
+                ->whereBetween('tgl_awal_sewa', ['2021-06-24', '2021-07-10'])
+                ->orwhereBetween('tgl_akhir_sewa', ['2021-06-24', '2021-07-10']);
+                for ($i=0; $i < $getidtennant; $i++) { 
+                    $resultidtennant[$i]=$getidtennant->id_tennant;
+                }
+            $query->orwhereNotIn('id_tennant',$resultidtennant);
+            // code...
+        }
         if ($cari['id_kategori']!='') {
-            $query->where('id_kategori',$cari['id_kategori']);
+            $query->orwhere('id_kategori',$cari['id_kategori']);
         }
         if ($cari['id_lantai']!='') {
-             $query->where('id_lantai',$cari['id_lantai']);
-        }
-        $tennant = $query->get();
-        return view('tennant.cari',compact('tennant','kategoris','lantais','cari'));
-    }
+         $query->orwhere('id_lantai',$cari['id_lantai']);
+     }
+     $tennant = $query->get();
+dd(DB::getQueryLog()); // Show results of log
+
+     return view('tennant.cari',compact('tennant','kategoris','lantais','cari'));
+ }
     /**
      * Store a newly created resource in storage.
      *

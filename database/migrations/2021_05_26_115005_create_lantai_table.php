@@ -43,6 +43,18 @@ class CreateLantaiTable extends Migration
            $table->foreign('id_kategori')->references('id_kategori')->on('kategoris')->onUpdate('cascade')->onDelete('cascade'); 
            
        });
+
+         Schema::create('penyewa', function (Blueprint $table) {
+            $table->id();
+          $table->string('nama_pemilik',100);
+            $table->string('alamat_pemilik',255);
+            $table->string('hp',20);
+            $table->string('email',100);
+            $table->string('ktp',100);
+            $table->string('nama_usaha',100);
+            $table->string('alamat_usaha',100);
+            $table->string('no_siup',100);
+        });
     }
 
     /**
