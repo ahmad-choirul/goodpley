@@ -365,7 +365,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             </div>
         </div> -->
         <div class="clearfix"></div>
-        <p class="copy-right">EVERMORE | Design by <a href="http://w3layouts.com/">W3layouts</a> Customize with love by evermore team</p>
+   
+
     </div>
 </div>
 <!-- //footer -->
