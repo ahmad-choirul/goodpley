@@ -41,7 +41,7 @@
                 <select class="form-control m-bot15" name="id_lantai">
                     <option value="">Pilih penyewa</option>
                     @foreach ($penyewas as $penyewa)
-                    <option value="<?php echo $penyewa->id ?>" ><?php echo $penyewa->nama_lantai ?></option>
+                    <option value="<?php echo $penyewa->id ?>" ><?php echo $penyewa->nama_pemilik ?></option>
                     @endforeach
                 </select>
 
@@ -55,7 +55,7 @@
                  <select class="form-control m-bot15" name="id_lantai">
                     <option value="">Pilih Tennant</option>
                     @foreach ($tennants as $tennant)
-                    <option value="<?php echo $tennant->id ?>" ><?php echo $tennant->nama_lantai ?></option>
+                    <option value="<?php echo $tennant->id ?>" ><?php echo $tennant->nama_tennant ?></option>
                     @endforeach
                 </select>
             </div>

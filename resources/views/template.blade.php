@@ -15,7 +15,7 @@
 <body>
   <header>
     <div class="row">
-        <div class="col-md-3"> <a class="logo" href="/"><img src="" alt="logo">GOODPLEY</a></div>
+        <div class="col-md-3"> <a class="logo" href="/"><img src="images/logo32.png" alt="logo"></a></div>
         <div class="col-md-7">
              <nav>
                 <ul></ul>
@@ -24,6 +24,7 @@
                     <li><a href="{{ route('kategori.index') }}">Kategori</a></li>
                     <li><a href="{{ route('tennant.index') }}">Tennant</a></li>
                     <li><a href="{{ route('penyewa.index') }}">Penyewa</a></li>
+                    <li><a href="{{ route('sewa.index') }}">Sewa</a></li>
                     
                     
 
@@ -31,10 +32,27 @@
                 </ul>
             </nav>
         </div>
-      <!--   <div class="col-md-2">
-             <a class="cta" href="#">Contact</a>
-            <p class="menu cta">Menu</p>
-        </div> -->
+        <div class="col-md-2">
+
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Manage Account') }}
+                            </div>
+
+                         <!--    <a href="{{ route('profile.show') }}">
+                                {{ __('Profile') }}
+                            </a> -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <a href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                this.closest('form').submit();" class=" btn btn-warning">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>
+                        
+
+          </div>
     </div>
            
            

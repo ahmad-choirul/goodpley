@@ -80,7 +80,7 @@ class TennantController extends Controller
          $query->orwhere('id_lantai',$cari['id_lantai']);
      }
      $tennant = $query->get();
-dd(DB::getQueryLog()); // Show results of log
+// dd(DB::getQueryLog()); 
 
      return view('tennant.cari',compact('tennant','kategoris','lantais','cari'));
  }

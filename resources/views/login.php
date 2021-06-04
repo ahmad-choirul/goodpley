@@ -120,9 +120,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         <div class="col-md-12">
              <input type="submit" name="login" class="form-group">
         </div>
-        
-
-           </form>
+        </form>
 </div>
 </div>
 </div>
