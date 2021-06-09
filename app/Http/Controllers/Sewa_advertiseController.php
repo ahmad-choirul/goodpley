@@ -42,12 +42,12 @@ class Sewa_AdvertiseController extends Controller
          ->select('sewas.id','nama_pemilik','nama_tennant')
          ->join('users', 'users.id', '=', 'sewas.id_penyewa')
          ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
-         
+
          ->where('sewas.id',$id)
          ->get();
      }
-     $lantais = lantai::all();
-     return view('sewa_advertise.create', compact('lantais','sewas'));
+     $advertise = DB::table('advertise')->get();
+     return view('sewa_advertise.create', compact('advertise','sewas'));
  }
 
     /**
@@ -63,10 +63,8 @@ class Sewa_AdvertiseController extends Controller
         'id_sewa' => 'required',
         'id_advertise' => 'required',
         'tgl_mulai_sewa' => 'required',
-        'lama_sewa' => 'required',
-        'id_users' => 'required'
+        'lama_sewa' => 'required'
     ]);
-
        $sewa_advertise = sewa_advertise::create([
            'id_sewa' => $request->id_sewa,
            'id_advertise' => $request->id_advertise,
@@ -74,7 +72,6 @@ class Sewa_AdvertiseController extends Controller
            'lama_sewa' => $request->lama_sewa,
            'id_users' => $request->id_users
        ]);
-       // dd($sewa_advertise);
 
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
