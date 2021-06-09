@@ -29,6 +29,12 @@ class penyewaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function keluhan()
+    {
+      
+
+     return view('keluhan.index');
+ }
     public function create()
     {
         $kategoris = kategori::all();
