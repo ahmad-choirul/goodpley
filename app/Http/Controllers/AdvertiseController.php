@@ -8,7 +8,7 @@ use App\Models\lantai;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-class AdvertiseController extends Controller
+class advertiseController extends Controller
 {
     /**
      * Display a listing of the resource.

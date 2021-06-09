@@ -30,10 +30,9 @@
         <div class="col-md-12">
             <div class="form-group">
                 <strong>Nama Sewa</strong>
-                <!-- <input type="text" name="id_sewa" class="form-control" placeholder="nama sewa_advertise"> -->
               <select class="form-control m-bot15" name="id_sewa">
                     @foreach ($sewas as $sewa)
-                    <option value="{{ $sewa->id }}">{{ $sewa->nama_pemilik }}</option>
+                    <option value="{{ $sewa->id }}">{{ $sewa->nama_pemilik }} / {{ $sewa->nama_tennant }}</option>
                     @endforeach
                 </select>
             </div>
@@ -47,7 +46,11 @@
         <div class="col-md-6">
             <div class="form-group">
                 <strong>advertise</strong>
-                <input type="number" name="id_advertise" class="form-control" placeholder="id_advertise">
+              <select class="form-control m-bot15" name="id_advertise">
+                    @foreach ($advertise as $a)
+                    <option value="{{ $a->id }}">{{ $a->nama_advertise }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-md-6">
@@ -63,16 +66,12 @@
         <div class="col-md-5">
              <div class="form-group">
                 <strong>lama_sewa</strong>
-                               <input type="number" name="lama_sewa" class="form-control" maxlength="16" placeholder="id_users Sewa / Bulan">
+                               <input type="number" name="lama_sewa" class="form-control" maxlength="16" placeholder="lama Sewa / Bulan">
 
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <strong>id_users</strong>
-                <input type="text" name="id_users" class="form-control" maxlength="16" placeholder="id_users Sewa / Bulan">
-            </div>
-        </div>
+                <input type="hidden" name="id_users" value="0" class="form-control" maxlength="16" placeholder="Lama Sewa / Bulan">
+         
         
 
     </div>
