@@ -18,7 +18,16 @@ class penyewaController extends Controller
      */
     public function index()
     {
-        $penyewa = DB::table('users')->get();
+         $level  = auth()->user()->level;
+        $id  = auth()->user()->id;
+           if ($level=='1') {
+           $penyewa = DB::table('penyewas')
+           ->get();
+       }elseif ($level=='2') {
+           $penyewa = DB::table('penyewas')
+           ->where('id_users', $id)
+           ->get();
+       }
         // $penyewa = penyewa::latest()->paginate(5);
         return view('penyewa.index',compact('penyewa'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -39,7 +48,9 @@ class penyewaController extends Controller
     {
         $kategoris = kategori::all();
         $lantais = lantai::all();
-        return view('penyewa.create', compact('kategoris','lantais'));
+        $users = DB::table('users')->get();
+
+        return view('penyewa.create', compact('kategoris','lantais','users'));
     }
    
     /**
@@ -52,12 +63,9 @@ class penyewaController extends Controller
     {
        // dd($request->all());
      $request->validate([
-        'name' => 'required',
-        'level' => 'required',
         'nama_pemilik' => 'required',
         'alamat_pemilik' => 'required',
         'hp' => 'required',
-        'email' => 'required',
         'ktp' => 'required',
         'nama_usaha' => 'required',
         'alamat_usaha' => 'required',
@@ -65,16 +73,14 @@ class penyewaController extends Controller
     ]);
 
      $penyewa = penyewa::create([
-         'name' => $request->name,
-          'level' => $request->level,
         'nama_pemilik' => $request->nama_pemilik,
         'alamat_pemilik' => $request->alamat_pemilik,
         'hp' => $request->hp,
-        'email' => $request->email,
         'ktp' => $request->ktp,
         'nama_usaha'     => $request->nama_usaha,
         'alamat_usaha' => $request->alamat_usaha,
         'no_siup' => $request->no_siup,
+        'id_users' => $request->id_userss,
     ]);
        // dd($penyewa);
 
@@ -107,7 +113,9 @@ class penyewaController extends Controller
     {
        $kategoris = kategori::all();
        $lantais = lantai::all();
-       return view('penyewa.edit',compact('penyewa','kategoris','lantais'));
+        $users = DB::table('users')->get();
+
+       return view('penyewa.edit',compact('penyewa','kategoris','lantais','users'));
    }
 
     /**
@@ -121,12 +129,9 @@ class penyewaController extends Controller
     {
         /// membuat validasi untuk title dan content wajib diisi
         $request->validate([
-        'name' => 'required',
-         'level' => 'required',
          'nama_pemilik' => 'required',
          'alamat_pemilik' => 'required',
          'hp' => 'required',
-         'email' => 'required',
          'ktp' => 'required',
          'nama_usaha' => 'required',
          'alamat_usaha' => 'required',
@@ -135,12 +140,10 @@ class penyewaController extends Controller
         $nama_usaha = $request->nama_usaha;
 
      $penyewa = penyewa::where('id', $request->id)->update([
-        'name' => $request->name,
-        'level' => $request->level,
+        'id_users' => $request->id_users,
         'nama_pemilik' => $request->nama_pemilik,
         'alamat_pemilik' => $request->alamat_pemilik,
         'hp' => $request->hp,
-        'email' => $request->email,
         'ktp' => $request->ktp,
         'nama_usaha'     => $request->nama_usaha,
         'alamat_usaha' => $request->alamat_usaha,

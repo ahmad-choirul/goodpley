@@ -6,6 +6,9 @@
         <div class="float-left">
             <h2>Daftar Nama penyewa</h2>
         </div>
+         <div class="float-right">
+            <a class="btn btn-success" href="{{ route('penyewa.create') }}"> Tambah Usaha</a>
+        </div>
     </div>
 </div>
 @if ($message = Session::get('success'))
