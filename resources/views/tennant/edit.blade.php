@@ -89,7 +89,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>gambar:</strong>
-                <img src=" {{ asset('storage/images/'.$advertise->gambar) }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
+                <img src=" {{ asset('storage/images/'.$tennant->gambar) }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
                 <input type="file" name="gambar" class="form-control" placeholder="Gambar">
 
             </div>

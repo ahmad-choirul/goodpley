@@ -43,9 +43,9 @@
             {{ __('Manage Account') }}
         </div>
 
-                         <!--    <a href="{{ route('profile.show') }}">
+                            <a href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
-                            </a> -->
+                            </a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 

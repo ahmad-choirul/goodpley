@@ -41,7 +41,6 @@
                 <!-- <input type="text" name="id_lantai" value="<?php echo $sewa->id_lantai ?>" class="form-control" placeholder="id_lantai"> -->
                 <!-- <input type="text" name="id_penyewa" value="<?php echo $sewa->id_penyewa ?>" class="form-control" placeholder="Alamat pemilik"> -->
                 <select class="form-control m-bot15" name="id_penyewa">
-                    <option value="">Pilih penyewa</option>
                     @foreach ($users as $penyewa)
                     <option value="<?php echo $penyewa->id ?>" <?php echo ( $sewa->id_penyewa == $penyewa->id) ? 'selected' : '' ?> ><?php echo $penyewa->nama_pemilik ?></option>
                     @endforeach
@@ -85,7 +84,7 @@
                     <!-- <input type="text" name="id_penyewa" value="<?php echo $sewa->id_penyewa ?>" class="form-control" placeholder="Alamat pemilik"> -->
                     <select class="form-control m-bot15" name="status">
                         <option value="">Pilih Status</option>
-                        <option value="0" <?php echo ( $sewa->status == '0') ? 'selected' : '' ?> >Belum Disetujui</option>
+                        <option value="0" <?php echo ( $sewa->status == '0') ? 'selected' : '' ?> >Belum Bayar</option>
                         <option value="1" <?php echo ( $sewa->status == '1') ? 'selected' : '' ?> >Sudah Disetujui</option>
                     </select>
                 </div>

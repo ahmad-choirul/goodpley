@@ -53,8 +53,10 @@
             <?php } ?>
         </td>
         <td class="text-center">
-            <form action="{{ route('sewa.destroy',$post->id) }}" method="POST">
                 <a class="btn btn-success btn-sm" href="{{ route('sewa_advertise.create', ['id' => $post->id]) }}">Marcom</a>
+                <?php $level = auth()->user()->level ; if ($level=='1'): ?>
+                    
+            <form action="{{ route('sewa.destroy',$post->id) }}" method="POST">
                 <a class="btn btn-info btn-sm" href="{{ route('sewa.show',$post->id) }}">Show</a>
 
                 <a class="btn btn-primary btn-sm" href="{{ route('sewa.edit',$post->id) }}">Edit</a>
@@ -64,6 +66,8 @@
 
                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
             </form>
+            
+                <?php endif ?>
         </td>
     </tr>
     @endforeach

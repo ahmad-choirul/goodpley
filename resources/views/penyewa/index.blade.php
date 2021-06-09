@@ -4,7 +4,7 @@
 <div class="row mt-5 mb-5">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
-            <h2>Daftar Nama penyewa</h2>
+            <h2>Daftar Nama Usaha</h2>
         </div>
          <div class="float-right">
             <a class="btn btn-success" href="{{ route('penyewa.create') }}"> Tambah Usaha</a>
@@ -20,8 +20,6 @@
     <table class="table-responsive " style="white-space: nowrap; ">
         <tr>
             <th width="20px" class="text-center">No</th>
-            <th>User</th>
-            <th>Level</th>
             <th>Pemilik</th>
             <th>Alamat</th>
             <th>Hp</th>
@@ -33,19 +31,7 @@
         @foreach ($penyewa as $post)
         <tr>
             <td class="text-center">{{ ++$i }}</td>
-            <td>{{ $post->name }}</td>
-            <td>
-                <?php if ($post->level=='1'){ ?>
-                    ADMIN
-                    <?php } elseif($post->level=='2'){ ?>
-                    PENYEWA
-                    <?php } elseif($post->level=='3'){ ?>
-                    MARKETING
-                    <?php } elseif($post->level=='4'){ ?>
-                    ADMINISTRASI
-                    <?php } elseif($post->level=='5'){ ?>
-                    OUTSOURCING
-                <?php } ?></td>
+        
                 <td>{{ $post->nama_pemilik }}</td>
                 <td>{{ $post->alamat_pemilik }}</td>
                 <td>{{ $post->hp }}</td>

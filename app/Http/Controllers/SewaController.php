@@ -31,7 +31,7 @@ class sewaController extends Controller
            ->get();
        }elseif ($level=='2') {
            $sewa = DB::table('sewas')
-           ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa')
+           ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
            ->where('id_penyewa', $id)
            ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
            ->join('users', 'users.id', '=', 'sewas.id_penyewa')

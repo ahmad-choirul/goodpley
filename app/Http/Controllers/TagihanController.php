@@ -17,9 +17,8 @@ class TagihanController extends Controller
      */
     public function index()
     {
-        // $tagihan = DB::table('tagihan')->get();
         $tagihan = tagihans::latest()->paginate(5);
-        return view('tagihan.index',compact('tagihan'))
+        return view('tagihan.index',compact('tagihan','penyewa'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -31,7 +30,7 @@ class TagihanController extends Controller
     public function create()
     {
 
-        $penyewa = penyewa::all();
+        $penyewa = DB::table('penyewas')->get();
         return view('tagihan.create', compact('penyewa'));
     }
 
