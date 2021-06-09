@@ -6,9 +6,9 @@
         <div class="float-left">
             <h2>FORM REGISTRASI PENYEWA</h2>
         </div>
-       <!--  <div class="float-right">
+        <div class="float-right">
             <a class="btn btn-secondary" href="{{ route('tennant.index') }}"> Back</a>
-        </div> -->
+        </div>
     </div>
 </div>
 
@@ -25,8 +25,8 @@
 
 <form action="{{ route('penyewa.store') }}" method="POST" enctype="multipart/form-data" class="form-control">
     @csrf
-     <span class="btn btn-info " style="border-radius: 6px;max-height: 30px; font-size: 12px;" >IDENTITAS PEMILIK USAHA</span>
-   
+    <span class="btn btn-info " style="border-radius: 6px;max-height: 30px; font-size: 12px;" >IDENTITAS PEMILIK USAHA</span>
+
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
@@ -50,35 +50,32 @@
 
     </div>
     <div class="row">
-        <div class="col-md-3">
+        
+                <?php $level = auth()->user()->level; 
+                $id = auth()->user()->id; 
+                if ($level=='1'): ?>
+                    <div class="col-md-3">
             <div class="form-group">
-                <strong>Email</strong>
-                <input type="email" name="email" class="form-control" placeholder="nama@gmail.com">
-            </div>
+                <strong>User</strong>
+                  <select class="form-control m-bot15" name="id_users" name="id_users">
+                    <option value="">Pilih User</option>
+                    @foreach ($users as $tennant)
+                    <option value="<?php echo $tennant->id ?>" ><?php echo $tennant->name ?></option>
+                    @endforeach
+                </select>
+                
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <strong>Ktp</strong>
-                <input type="text" name="ktp" class="form-control" maxlength="16" minlength="16" placeholder="16 digit no ktp">
-            </div>
+    </div>
+            <?php else: ?>
+                <input type="hidden" name="id_users" value="<?php echo $id ?>" >
+            <?php endif ?>
+    <div class="col-md-3">
+        <div class="form-group">
+            <strong>Ktp</strong>
+            <input type="text" name="ktp" class="form-control" maxlength="16" minlength="16" placeholder="16 digit no ktp">
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <strong>Username</strong>
-                <input type="text" name="name" class="form-control" maxlength="16" placeholder="Username">
-            </div>
-        </div>
-         <div class="col-md-3">
-            <div class="form-group">
-                <strong>Level</strong>
-                <select class="form-control select2" name="levels">
-                    <option>Pilih level</option>
-                    <option value="2">Penyewa</option>
-                    <option value="3">Marketing</option>
-                    <option value="4">Administrasi</option>
-                    <option value="5">Outsourcing</option>
-                </select>            </div>
-        </div>
+    </div>
+
 
     </div>
     <span class="btn btn-info " style="border-radius: 6px;max-height: 30px; font-size: 12px;" >IDENTITAS USAHA</span>

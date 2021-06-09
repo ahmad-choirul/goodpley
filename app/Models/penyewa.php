@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class penyewa extends Model
 {
 use HasFactory;
-protected $table = 'users';
+protected $table = 'penyewas';
 
 protected $fillable = [
-'name','level','nama_pemilik','alamat_pemilik','hp','email','ktp','nama_usaha','alamat_usaha','no_siup'
+'nama_pemilik','alamat_pemilik','hp','email','ktp','nama_usaha','alamat_usaha','no_siup','id_users'
  ];
 
 }
