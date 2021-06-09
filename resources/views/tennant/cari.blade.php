@@ -83,9 +83,25 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                 <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav menu__list">
                     <li class="active menu__item menu__item--current"><a class="menu__link" href="">Home <span class="sr-only">(current)</span></a></li>
-                    <!-- <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.create') }}">Register</a></li> -->
-                     <li class=" menu__item"><a class="menu__link" href="{{ route('register') }}">Register</a></li>
+                    <?php 
+ 
+ $id  = auth()->user();
+                     ?>
+                     <?php if ($id==''): ?>
+                       <li class=" menu__item"><a class="menu__link" href="{{ route('register') }}">Register</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('login') }}">Login</a></li>
+                    <?php else: ?>
+                          <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                this.closest('form').submit();" class=" btn btn-warning">
+                                {{ __('Log Out') }}
+                            </a>
+                        </form>
+                     <?php endif ?>
+                     
                      </ul>
                 </div>
               </div>
