@@ -26,6 +26,7 @@ use App\Http\Controllers\AkunController;
 Route::resource('akun', AkunController::class);
 use App\Http\Controllers\AdvertiseController;
 Route::resource('advertise', AdvertiseController::class);
+
 use App\Http\Controllers\KeluhanController;
 Route::resource('keluhan', KeluhanController::class);
 use App\Http\Controllers\Sewa_AdvertiseController;
