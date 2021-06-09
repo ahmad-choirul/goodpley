@@ -30,22 +30,25 @@ class Sewa_AdvertiseController extends Controller
      */
     public function create()
     {
-$id = request('id', 1);
-if ($id=='') {
-       $sewas = DB::table('sewas')
-        ->select('sewas.id','nama_pemilik')
-        ->join('users', 'users.id', '=', 'sewas.id_penyewa')
-        ->get();
-}else{
-       $sewas = DB::table('sewas')
-        ->select('sewas.id','nama_pemilik')
-        ->join('users', 'users.id', '=', 'sewas.id_penyewa')
-        ->where('sewas.id',$id)
-        ->get();
-}
-        $lantais = lantai::all();
-        return view('sewa_advertise.create', compact('lantais','sewas'));
-    }
+        $id = request('id', 1);
+        if ($id=='') {
+         $sewas = DB::table('sewas')
+         ->select('sewas.id','nama_pemilik','nama_tennant')
+         ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+         ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
+         ->get();
+     }else{
+         $sewas = DB::table('sewas')
+         ->select('sewas.id','nama_pemilik','nama_tennant')
+         ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+         ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
+         
+         ->where('sewas.id',$id)
+         ->get();
+     }
+     $lantais = lantai::all();
+     return view('sewa_advertise.create', compact('lantais','sewas'));
+ }
 
     /**
      * Store a newly created resource in storage.
@@ -56,30 +59,30 @@ if ($id=='') {
     public function store(Request $request)
     {
        // dd($request->all());
-     $request->validate([
+       $request->validate([
         'id_sewa' => 'required',
         'id_advertise' => 'required',
         'tgl_mulai_sewa' => 'required',
         'lama_sewa' => 'required',
         'id_users' => 'required'
     ]);
-  
-     $sewa_advertise = sewa_advertise::create([
-         'id_sewa' => $request->id_sewa,
-         'id_advertise' => $request->id_advertise,
-         'tgl_mulai_sewa' => $request->tgl_mulai_sewa,
-         'lama_sewa' => $request->lama_sewa,
-         'id_users' => $request->id_users
-     ]);
+
+       $sewa_advertise = sewa_advertise::create([
+           'id_sewa' => $request->id_sewa,
+           'id_advertise' => $request->id_advertise,
+           'tgl_mulai_sewa' => $request->tgl_mulai_sewa,
+           'lama_sewa' => $request->lama_sewa,
+           'id_users' => $request->id_users
+       ]);
        // dd($sewa_advertise);
 
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
 
         /// redirect jika sukses menyimpan data
-     return redirect()->route('sewa_advertise.index')
-     ->with('success','Data sewa_advertise berhasil ditambahkan');
- }
+       return redirect()->route('sewa_advertise.index')
+       ->with('success','Data sewa_advertise berhasil ditambahkan');
+   }
 
     /**
      * Display the specified resource.
@@ -100,9 +103,9 @@ if ($id=='') {
      */
     public function edit(sewa_advertise $sewa_advertise)
     {
-       $lantais = lantai::all();
-       return view('sewa_advertise.edit',compact('sewa_advertise','lantais'));
-   }
+     $lantais = lantai::all();
+     return view('sewa_advertise.edit',compact('sewa_advertise','lantais'));
+ }
 
     /**
      * Update the specified resource in storage.

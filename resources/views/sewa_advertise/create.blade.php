@@ -33,7 +33,7 @@
                 <!-- <input type="text" name="id_sewa" class="form-control" placeholder="nama sewa_advertise"> -->
               <select class="form-control m-bot15" name="id_sewa">
                     @foreach ($sewas as $sewa)
-                    <option value="{{ $sewa->id }}">{{ $sewa->nama_pemilik }}</option>
+                    <option value="{{ $sewa->id }}">{{ $sewa->nama_pemilik }} / {{ $sewa->nama_tennant }}</option>
                     @endforeach
                 </select>
             </div>
