@@ -51,8 +51,17 @@ class sewaController extends Controller
     public function create()
     {
         $tennants = tennant::all();
-        $users = penyewa::all();
-        return view('sewa.create', compact('tennants','users'));
+           $level  = auth()->user()->level;
+        $id  = auth()->user()->id;
+           if ($level=='1') {
+           $penyewas = DB::table('penyewas')
+           ->get();  
+       }elseif ($level=='2') {
+           $penyewas = DB::table('penyewas')
+           ->where('id_users', $id)
+           ->get();
+       }
+        return view('sewa.create', compact('tennants','penyewas'));
     }
 
     /**
