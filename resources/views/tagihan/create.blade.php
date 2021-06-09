@@ -28,63 +28,73 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nama tennant</strong>
-                <input type="text" name="nama_tennant" class="form-control" placeholder="nama tennant">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Lantai</strong>
-                <select class="form-control m-bot15" name="id_lantai">
-                    <option value="">Pilih Lantai</option>
-                    @foreach ($lantais as $lantai)
-                    <option value="{{ $lantai->id }}">{{ $lantai->nama_lantai }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Kategori</strong>
-                <!-- <input type="text" name="id_kategori" class="form-control" placeholder="Kategori"> -->
-                <select class="form-control m-bot15" name="id_kategori">
-                    <option value="">Pilih Kategori</option>
-                    @foreach ($kategoris as $kategori)
-                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
-                    @endforeach
-
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Lebar</strong>
-                <input type="text" name="lebar" class="form-control" placeholder="Lebar">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Panjang</strong>
-                <input type="text" name="panjang" class="form-control" placeholder="Panjang">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Gambar</strong>
-                <input type="file" name="gambar" class="form-control" placeholder="Gambar">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Harga</strong>
-                <input type="text" name="harga" class="form-control" placeholder="Harga">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+         <div class="form-group">
+            <strong>Nama Outlet</strong>
+            <select class="form-control m-bot15" name="id_penyewa">
+                <option value="">Pilih Outlet</option>
+                @foreach ($penyewa as $penyewa)
+                <option value="{{ $penyewa->id }}">{{ $penyewa->nama_usaha }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Jenis</strong>
+            <select class="form-control m-bot15" name="jenis_tagihan">
+                <option value="">Pili</option>
+                <option>PLN</option>
+                <option>PDAM</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Tgl tagihan</strong>
+            <input type="date" name="tgl_tagihan" class="form-control" placeholder="tgl tagihan">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Deskripsi</strong>
+            <input type="text" name="deskripsi" class="form-control" placeholder="deskripsi">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Nominal</strong>
+            <input type="text" name="nominal" class="form-control" placeholder="Nominal">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Bukti Tagihan</strong>
+            <input type="file" name="bukti_tagiahan" class="form-control" placeholder="Bukti Tagihan">
+        </div>
+    </div>
+     <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Bukti Pembayaran</strong>
+            <input type="file" name="bukti_pembayaran" class="form-control" placeholder="Bukti Pembayaran">
+        </div>
+    </div>
+     <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Admin</strong>
+            <input type="file" name="id_users" class="form-control" placeholder="Admin">
+        </div>
+    </div>
+     <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Status</strong>
+            <input type="file" name="status" class="form-control" placeholder="Status">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>
 
 </form>
 @endsection

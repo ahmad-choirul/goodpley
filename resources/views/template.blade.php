@@ -28,6 +28,7 @@
                 <li><a href="{{ route('tennant.index') }}">Outlet</a></li>
                 <li><a href="{{ route('penyewa.index') }}">Penyewa</a></li>
                 <li><a href="{{ route('advertise.index') }}">Advertise</a></li>
+                 <li><a href="{{ route('tagihan.index') }}">Tagihan</a></li>
                 <li><a href="{{ route('sewa.index') }}">Sewa</a></li>
                 <?php elseif($level=='2'): ?>
                     <li><a href="{{ route('sewa.index') }}">Sewa</a></li>

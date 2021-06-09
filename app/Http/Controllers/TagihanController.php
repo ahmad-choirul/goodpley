@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\tagihan;
+use App\Models\tagihans;
 use App\Models\sewa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +18,7 @@ class TagihanController extends Controller
     public function index()
     {
         // $tagihan = DB::table('tagihan')->get();
-        $tagihan = tagihan::latest()->paginate(5);
+        $tagihan = tagihans::latest()->paginate(5);
         return view('tagihan.index',compact('tagihan'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -31,8 +31,8 @@ class TagihanController extends Controller
     public function create()
     {
 
-        $lantais = lantai::all();
-        return view('tagihan.create', compact('lantais'));
+        $penyewa = penyewa::all();
+        return view('tagihan.create', compact('penyewa'));
     }
 
     /**
@@ -45,7 +45,7 @@ class TagihanController extends Controller
     {
        // dd($request->all());
      $request->validate([
-        'id_sewa' => 'required',
+        'id_penyewa' => 'required',
         'jenis_tagihan' => 'required',
         'tgl_tagihan' => 'required',
         'deskripsi' => 'required',
@@ -67,7 +67,7 @@ class TagihanController extends Controller
 //Nama ini juga disimpan ke kolom, misal ke artikel
 
      $tagihan = tagihan::create([
-        'id_sewa' => $request->id_sewa,
+        'id_penyewa' => $request->id_penyewa,
         'jenis_tagihan' => $request->jenis_tagihan,
         'tgl_tagihan' => $request->tgl_tagihan,
         'deskripsi' => $request->deskripsi,
@@ -109,7 +109,7 @@ class TagihanController extends Controller
     public function edit(tagihan $tagihan)
     {
        $lantais = lantai::all();
-       return view('tagihan.edit',compact('tagihan','sewa','user'));
+       return view('tagihan.edit',compact('tagihan','penyewa'));
    }
 
     /**
@@ -123,7 +123,7 @@ class TagihanController extends Controller
     {
         /// membuat validasi untuk title dan content wajib diisi
         $request->validate([
-            'id_sewa' => 'id_sewa',
+            'id_penyewa' => 'id_penyewa',
             'jenis_tagihan' => 'required',
             'tgl_tagihan' => 'required',
             'deskripsi' => 'required',
@@ -150,7 +150,7 @@ class TagihanController extends Controller
      $bukti_tagihan->storeAs('public/images', $filename);
      $bukti_pembayaran->storeAs('public/images', $filename);
      $tagihan = tagihan::where('id', $request->id)->update([
-        'id_sewa' => $request->id_sewa,
+        'id_penyewa' => $request->id_penyewa,
         'jenis_tagihan' => $request->jenis_tagihan,
         'tgl_tagihan' => $request->tgl_tagihan,
         'deskripsi' => $request->deskripsi,

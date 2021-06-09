@@ -11,7 +11,7 @@
                 <h2> Show Post</h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('tennant.index') }}"> Back</a>
+                <a class="btn btn-secondary" href="{{ route('tagihan.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -20,43 +20,61 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama outlet:</strong>
-                {{ $tennant->nama_tennant }}
+                {{ $tagihan->nama_tagihan }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Lantai:</strong>
-                {{ $tennant->id_lantai }}
+                <strong>Jenis :</strong>
+                {{ $tagihan->jenis_tagihan }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Kategori:</strong>
-                {{ $tennant->id_kategori }}
+                <strong>Kategori :</strong>
+                {{ $tagihan->tgl_tagihan }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Panjang:</strong>
-                {{ $tennant->panjang }}
+                <strong>Deskripsi :</strong>
+                {{ $tagihan->deskripsi }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Lebar:</strong>
-                {{ $tennant->lebar }}
+                <strong>Nominal :</strong>
+                {{ $tagihan->nominal }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Harga:</strong>
-                {{ $tennant->harga }}
+                <strong>Bukti Tagihan :</strong>
+                {{ $tagihan->bukti_tagihan }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Bukti Pembayaran :</strong>
+                {{ $tagihan->bukti_pembayaran }}
+            </div>
+        </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Admin :</strong>
+                {{ $tagihan->id_users }}
+            </div>
+        </div>
+         <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Status :</strong>
+                {{ $tagihan->status }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Gambar:</strong>
-                {{ $tennant->gambar }}
+               <img src=" {{ asset('storage/images/'.$tagihan->gambar) }}" width="500px">
             </div>
         </div>
     </div>

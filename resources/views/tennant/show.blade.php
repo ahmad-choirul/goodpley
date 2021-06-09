@@ -56,7 +56,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Gambar:</strong>
-                {{ $tennant->gambar }}
+               <img src=" {{ asset('storage/images/'.$tennant->gambar) }}" width="500px">
             </div>
         </div>
     </div>

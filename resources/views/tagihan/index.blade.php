@@ -7,7 +7,7 @@
                 <h2>Daftar Nama Outlet</h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-success" href="{{ route('tennant.create') }}"> Tambah Outlet</a>
+                <a class="btn btn-success" href="{{ route('tagihan.create') }}"> Tambah Tagihan</a>
             </div>
         </div>
     </div>
@@ -22,30 +22,35 @@
         <tr>
             <th width="20px" class="text-center">No</th>
             <th>Nama Outlet</th>
-            <th>Lantai</th>
-            <th>Kategori</th>
-            <th>Lebar</th>
-            <th>Panjang</th>
-            <th>Harga</th>
-            <th>Gambar</th>
+            <th>Jenis Tagihan</th>
+            <th>Tgl Tagihan</th>
+            <th>Deskripsi</th>
+            <th>Nominal</th>
+            <th>bukti_tagihan</th>
+            <th>bukti_pembayaran</th>
+            <th>Admin</th>
+            <th>Status</th>
+
             <th width="280px"class="text-center">Action</th>
         </tr>
-        @foreach ($tennant as $post)
+        @foreach ($tagihan as $post)
         <tr>
             <td class="text-center">{{ ++$i }}</td>
-            <td>{{ $post->nama_tennant }}</td>
-            <td>{{ $post->nama_lantai }}</td>
-            <td>{{ $post->nama_kategori }}</td>
-            <td>{{ $post->lebar }}</td>
-            <td>{{ $post->panjang }}</td>
-            <td>{{ $post->harga }}</td>
-            <td><img src=" {{ asset('storage/images/'.$post->gambar) }}" width="100px"> </td>
+            <td>{{ $post->id_sewa }}</td>
+            <td>{{ $post->jenis_tagihan}}</td>
+            <td>{{ $post->tgl_tagihan}}</td>
+            <td>{{ $post->deskripsi }}</td>
+            <td>{{ $post->nominal }}</td>
+            <td><img src=" {{ asset('storage/images/'.$post->bukti_tagihan) }}" width="100px"> </td>
+            <td><img src=" {{ asset('storage/images/'.$post->bukti_pembayaran) }}" width="100px"> </td>
+            <td>{{ $post->id_users }}</td>
+            <td>{{ $post->status }}</td>
             <td class="text-center">
-                <form action="{{ route('tennant.destroy',$post->id) }}" method="POST">
+                <form action="{{ route('tagihan.destroy',$post->id) }}" method="POST">
  
-                    <a class="btn btn-info btn-sm" href="{{ route('tennant.show',$post->id) }}">Show</a>
+                    <a class="btn btn-info btn-sm" href="{{ route('tagihan.show',$post->id) }}">Show</a>
  
-                    <a class="btn btn-primary btn-sm" href="{{ route('tennant.edit',$post->id) }}">Edit</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('tagihan.edit',$post->id) }}">Edit</a>
  
                     @csrf
                     @method('DELETE')

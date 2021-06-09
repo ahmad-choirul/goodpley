@@ -7,7 +7,7 @@
             <h2>Edit Post</h2>
         </div>
         <div class="float-right">
-            <a class="btn btn-secondary" href="<?php echo route('tennant.index') ?>"> Back</a>
+            <a class="btn btn-secondary" href="<?php echo route('tagihan.index') ?>"> Back</a>
         </div>
     </div>
 </div>
@@ -23,81 +23,81 @@
 </div>
 @endif
 
-<form action="<?php echo route('tennant.update',$tennant->id) ?>" method="POST"  enctype="multipart/form-data" >
+<form action="<?php echo route('tagihan.update',$tagihan->id) ?>" method="POST"  enctype="multipart/form-data" >
     @csrf
     @method('PUT')
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nama Outlet:</strong>
-                <input type="text" name="nama_tennant" value="<?php echo $tennant->nama_tennant ?>" class="form-control" placeholder="Nama Tennant">
-            </div>
+           <div class="form-group">
+            <strong>Nama Outlet</strong>
+            <select class="form-control m-bot15" name="id_penyewa">
+                <option value="">Pilih penyewa</option>
+                @foreach ($penyewas as $penyewa)
+                <option value="<?php echo $penyewa->id ?>" <?php echo ( $tennant->id_penyewa == $penyewa->id) ? 'selected' : '' ?> ><?php echo $penyewa->nama_usaha ?></option>
+                @endforeach
+            </select>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Lantai:</strong>
-                <!-- <input type="text" name="id_lantai" value="<?php echo $tennant->id_lantai ?>" class="form-control" placeholder="id_lantai"> -->
-                <select class="form-control m-bot15" name="id_lantai">
-                    <option value="">Pilih Lantai</option>
-                    @foreach ($lantais as $lantai)
-                    <option value="<?php echo $lantai->id ?>" <?php echo ( $tennant->id_lantai == $lantai->id) ? 'selected' : '' ?> ><?php echo $lantai->nama_lantai ?></option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Kategori: <?php echo $tennant->id_kategori ?></strong>
-                <select class="form-control m-bot15" name="id_kategori">
-                    <option value="">Pilih kategori</option>
-                    @foreach ($kategoris as $kategori)
-                    <option value="<?php echo $kategori->id ?>"   <?php echo ( $kategori->id == $tennant->id_kategori) ? 'selected' : ''  ?>><?php echo $kategori->nama_kategori ?></option>
-                    @endforeach
-                </select>
-                <!-- <input type="text" name="id_kategori" value="<?php echo $tennant->id_kategori ?>" class="form-control" placeholder="id_kategori"> -->
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>panjang:</strong>
-                <input type="text" name="panjang" value="<?php echo $tennant->panjang ?>" class="form-control" placeholder="panjang">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>lebar:</strong>
-                <input type="text" name="lebar" value="<?php echo $tennant->lebar ?>" class="form-control" placeholder="lebar">
-                <input type="hidden" name="nama_gambar" value="<?php echo $tennant->gambar ?>" class="form-control" placeholder="lebar">
-                <input type="hidden" name="id" value="<?php echo $tennant->id ?>" class="form-control" placeholder="lebar">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>gambar:</strong>
-                <img src=" {{ asset('storage/images/'.$tennant->gambar) }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
-                <input type="file" name="gambar" class="form-control" placeholder="Gambar">
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+           <strong>Jenis: <?php echo $tagihan->jenis_tagihan ?></strong>
+           <select class="form-control m-bot15" name="jenis_tagihan">
+            <option value="">Pili</option>
+            <option>PLN</option>
+            <option>PDAM</option>
+        </select>
+    </div>
+</div>
 
-            </div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group">
+        <strong>Tgl tagihan</strong>
+        <input type="date" name="tgl_tagihan" class="form-control" value="<?php echo $tagihan->tgl_tagihan ?>" placeholder="tgl tagihan">
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group">
+        <strong>Deskripsi</strong>
+        <input type="text" name="deskripsi" value="<?php echo $tagihan->deskripsi ?>" class="form-control" placeholder="deskripsi">
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group">
+        <strong>Nominal</strong>
+        <input type="text" name="nominal" value="<?php echo $tagihan->nominal ?>" class="form-control" placeholder="Nominal">
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group">
+        <strong>Bukti Tagihan</strong>
+        <img src=" {{ asset('storage/images/'.$advertise->gambar) }}" class="img-thumbnail" style="max-width: 200px; max-height: 100px;">
+        <input type="file" name="gambar" class="form-control" placeholder="Gambar">   </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Bukti Pembayaran</strong>
+            <img src=" {{ asset('storage/images/'.$advertise->gambar) }}" class="img-thumbnail" style="max-width: 200px; max-height: 100px;">
+            <input type="file" name="gambar" class="form-control" placeholder="Gambar">
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Harga:</strong>
-                <input type="text" name="harga" value="<?php echo $tennant->harga ?>" class="form-control" placeholder="harga">
-            </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Admin</strong> 
+            <input type="file" name="id_users" value="<?php echo $tagihan->id_users ?>" class="form-control" placeholder="Admin">
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>gambar:</strong>
-                <img src=" {{ asset('storage/images/'.$advertise->gambar) }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
-                <input type="file" name="gambar" class="form-control" placeholder="Gambar">
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Status</strong>
+            <input type="file" name="status" value="<?php echo $tagihan->status ?>" class="form-control" placeholder="Status">
+        </div>
+    </div>
 
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-          <button type="submit" class="btn btn-primary">Update</button>
-      </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+      <button type="submit" class="btn btn-primary">Update</button>
   </div>
+</div>
 
 </form>
 @endsection
