@@ -22,7 +22,7 @@ class penyewaController extends Controller
         $id  = auth()->user()->id;
            if ($level=='1') {
            $penyewa = DB::table('penyewas')
-           ->get();
+           ->get();  
        }elseif ($level=='2') {
            $penyewa = DB::table('penyewas')
            ->where('id_users', $id)
@@ -80,7 +80,7 @@ class penyewaController extends Controller
         'nama_usaha'     => $request->nama_usaha,
         'alamat_usaha' => $request->alamat_usaha,
         'no_siup' => $request->no_siup,
-        'id_users' => $request->id_userss,
+        'id_users' => $request->id_users,
     ]);
        // dd($penyewa);
 
