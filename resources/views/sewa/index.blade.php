@@ -18,6 +18,11 @@
     <p>{{ $message }}</p>
 </div>
 @endif
+@if ($message = Session::get('fail'))
+<div class="alert alert-warning">
+    <p>{{ $message }}</p>
+</div>
+@endif
 <div class="table"> 
     <table class="table-responsive " style="white-space: nowrap; ">
         <tr>
