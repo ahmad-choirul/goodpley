@@ -30,9 +30,21 @@ class Sewa_AdvertiseController extends Controller
      */
     public function create()
     {
-
+$id = request('id', 1);
+if ($id=='') {
+       $sewas = DB::table('sewas')
+        ->select('sewas.id','nama_pemilik')
+        ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+        ->get();
+}else{
+       $sewas = DB::table('sewas')
+        ->select('sewas.id','nama_pemilik')
+        ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+        ->where('sewas.id',$id)
+        ->get();
+}
         $lantais = lantai::all();
-        return view('sewa_advertise.create', compact('lantais'));
+        return view('sewa_advertise.create', compact('lantais','sewas'));
     }
 
     /**

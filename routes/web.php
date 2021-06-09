@@ -31,6 +31,7 @@ use App\Http\Controllers\KeluhanController;
 Route::resource('keluhan', KeluhanController::class);
 use App\Http\Controllers\Sewa_AdvertiseController;
 Route::resource('sewa_advertise', Sewa_AdvertiseController::class);
+Route::get('sewa_advertise/create/{id}', [TennantController::class, 'sewa_advertise/create']);
 
 use App\Http\Controllers\SewaController;
 Route::resource('sewa', SewaController::class);

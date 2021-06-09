@@ -32,7 +32,6 @@
                 <?php elseif($level=='2'): ?>
                     <li><a href="{{ route('sewa.index') }}">Sewa</a></li>
                 <?php endif ?>
-                <li><a href="{{ route('keluhan.index') }}" class="btn btn-xs btn-info " style="border-radius: 20px;"><b>?</b></a></li>
 
 
 
