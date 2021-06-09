@@ -4,7 +4,7 @@
 <div class="row mt-5 mb-5">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
-            <h2>Tambah data tennant</h2>
+            <h2>Tambah data Outlet</h2>
         </div>
         <div class="float-right">
             <a class="btn btn-secondary" href="{{ route('tennant.index') }}"> Back</a>
@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama tennant</strong>
+                <strong>Nama outlet</strong>
                 <input type="text" name="nama_tennant" class="form-control" placeholder="nama tennant">
             </div>
         </div>

@@ -4,7 +4,7 @@
 <div class="row mt-5 mb-5">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
-            <h2>FORM SEWA TENNANT</h2>
+            <h2>FORM SEWA OUTLET</h2>
         </div>
        <!--  <div class="float-right">
             <a class="btn btn-secondary" href="{{ route('tennant.index') }}"> Back</a>
@@ -44,11 +44,11 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <strong>Tennant</strong>
+                <strong>Outlet</strong>
                 <!-- <input type="text" name="id_tennant" class="form-control" placeholder="NAma Tennant"> -->
                 
                  <select class="form-control m-bot15" name="id_tennant" name="id_tennant">
-                    <option value="">Pilih Tennant</option>
+                    <option value="">Pilih Outlet</option>
                     @foreach ($tennants as $tennant)
                     <option value="<?php echo $tennant->id ?>" ><?php echo $tennant->nama_tennant ?></option>
                     @endforeach
