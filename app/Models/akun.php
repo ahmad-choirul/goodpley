@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class penyewa extends Model
+class akun extends Model
 {
 use HasFactory;
 protected $table = 'users';
-
 protected $fillable = [
-'name','level','nama_pemilik','alamat_pemilik','hp','email','ktp','nama_usaha','alamat_usaha','no_siup'
+'nama','email','level'
  ];
 
 }

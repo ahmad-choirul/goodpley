@@ -22,9 +22,15 @@ use App\Http\Controllers\tennantController;
 Route::resource('tennant', TennantController::class);
 use App\Http\Controllers\PenyewaController;
 Route::resource('penyewa', PenyewaController::class);
+use App\Http\Controllers\AkunController;
+Route::resource('akun', AkunController::class);
+use App\Http\Controllers\AdvertiseController;
+Route::resource('advertise', AdvertiseController::class);
+
 use App\Http\Controllers\SewaController;
 Route::resource('sewa', SewaController::class);
 Route::get('search', [TennantController::class, 'cari']);
+Route::get('/changestatussewa', [SewaController::class, 'changestatus']);
 Route::get('/', [TennantController::class, 'cari']);
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

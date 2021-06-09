@@ -50,17 +50,34 @@
 
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <strong>Email</strong>
                 <input type="email" name="email" class="form-control" placeholder="nama@gmail.com">
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-3">
             <div class="form-group">
                 <strong>Ktp</strong>
-                <input type="text" name="ktp" class="form-control" maxlength="16" placeholder="16 digit no ktp">
+                <input type="text" name="ktp" class="form-control" maxlength="16" minlength="16" placeholder="16 digit no ktp">
             </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <strong>Username</strong>
+                <input type="text" name="name" class="form-control" maxlength="16" placeholder="Username">
+            </div>
+        </div>
+         <div class="col-md-3">
+            <div class="form-group">
+                <strong>Level</strong>
+                <select class="form-control select2" name="levels">
+                    <option>Pilih level</option>
+                    <option value="2">Penyewa</option>
+                    <option value="3">Marketing</option>
+                    <option value="4">Administrasi</option>
+                    <option value="5">Outsourcing</option>
+                </select>            </div>
         </div>
 
     </div>

@@ -40,9 +40,9 @@
                 <strong>Penyewa:</strong>
                 <!-- <input type="text" name="id_lantai" value="<?php echo $sewa->id_lantai ?>" class="form-control" placeholder="id_lantai"> -->
                 <!-- <input type="text" name="id_penyewa" value="<?php echo $sewa->id_penyewa ?>" class="form-control" placeholder="Alamat pemilik"> -->
-                 <select class="form-control m-bot15" name="id_penyewa">
+                <select class="form-control m-bot15" name="id_penyewa">
                     <option value="">Pilih penyewa</option>
-                    @foreach ($penyewas as $penyewa)
+                    @foreach ($users as $penyewa)
                     <option value="<?php echo $penyewa->id ?>" <?php echo ( $sewa->id_penyewa == $penyewa->id) ? 'selected' : '' ?> ><?php echo $penyewa->nama_pemilik ?></option>
                     @endforeach
                 </select>
@@ -66,24 +66,39 @@
                 <input type="biaya" name="biaya" value="<?php echo $sewa->biaya ?>" class="form-control" placeholder="biaya">
             </div>
         </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>tgl_awal_sewa:</strong>
-            <input type="date" maxlength="16" value="<?php echo $sewa->tgl_awal_sewa ?>"  name="tgl_awal_sewa" class="form-control" placeholder="tgl_awal_sewa">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>tgl_awal_sewa:</strong>
+                <input type="date" maxlength="16" value="<?php echo $sewa->tgl_awal_sewa ?>"  name="tgl_awal_sewa" class="form-control" placeholder="tgl_awal_sewa">
 
-        </div>
-        <div class="form-group">
-            <strong>tgl_akhir_sewa:</strong>
-            <input type="date" maxlength="16" value="<?php echo $sewa->tgl_akhir_sewa ?>"  name="tgl_akhir_sewa" class="form-control" placeholder="tgl_awal_sewa">
+            </div>
+            <div class="form-group">
+                <strong>tgl_akhir_sewa:</strong>
+                <input type="date" maxlength="16" value="<?php echo $sewa->tgl_akhir_sewa ?>"  name="tgl_akhir_sewa" class="form-control" placeholder="tgl_awal_sewa">
 
-        </div>
-    </div>
-    
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="float: right;">
-      <a class="btn btn-warning btn-block" href="<?php echo route('sewa.index') ?>" > Cancel</a><br>
-      <button type="submit" class="btn btn-primary btn-block " > Update </button>
-  </div>
-</div>
+            </div>
+            <?php $level=auth()->user()->level; if ($level=='1'){ ?>
 
-</form>
-@endsection
+                <div class="form-group">
+                    <strong>Status:</strong>
+                    <!-- <input type="text" name="id_lantai" value="<?php echo $sewa->id_lantai ?>" class="form-control" placeholder="id_lantai"> -->
+                    <!-- <input type="text" name="id_penyewa" value="<?php echo $sewa->id_penyewa ?>" class="form-control" placeholder="Alamat pemilik"> -->
+                    <select class="form-control m-bot15" name="status">
+                        <option value="">Pilih Status</option>
+                        <option value="0" <?php echo ( $sewa->status == '0') ? 'selected' : '' ?> >Belum Disetujui</option>
+                        <option value="1" <?php echo ( $sewa->status == '1') ? 'selected' : '' ?> >Sudah Disetujui</option>
+                    </select>
+                </div>
+                <?php }else{ ?>
+                <input type="hidden" maxlength="16" value="<?php echo $sewa->status ?>"  name="status" class="form-control" placeholder="tgl_awal_sewa">
+<?php } ?>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="float: right;">
+                  <a class="btn btn-warning btn-block" href="<?php echo route('sewa.index') ?>" > Cancel</a><br>
+                  <button type="submit" class="btn btn-primary btn-block " > Update </button>
+              </div>
+          </div>
+
+      </form>
+      @endsection

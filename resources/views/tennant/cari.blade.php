@@ -195,7 +195,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     <div class="container">
 
         <div class="row justify-content-center py-4">
-            <h2 class="text-center"><strong>Cari Tennant</strong></h2>
+            <h2 class="text-center"><strong>Cari Outlet</strong></h2>
         </div>
         <br>
         <div class="row justify-content-center">

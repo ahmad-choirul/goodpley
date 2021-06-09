@@ -4,10 +4,10 @@
     <div class="row mt-5 mb-5">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Daftar Nama tennant</h2>
+                <h2>Daftar Nama Outlet</h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-success" href="{{ route('tennant.create') }}"> Tambah Tennant</a>
+                <a class="btn btn-success" href="{{ route('tennant.create') }}"> Tambah Outlet</a>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
     <table class="table table-bordered">
         <tr>
             <th width="20px" class="text-center">No</th>
-            <th>Nama tennant</th>
+            <th>Nama Outlet</th>
             <th>Lantai</th>
             <th>Kategori</th>
             <th>Lebar</th>

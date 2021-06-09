@@ -18,7 +18,7 @@ class penyewaController extends Controller
      */
     public function index()
     {
-        $penyewa = DB::table('penyewas')->get();
+        $penyewa = DB::table('users')->get();
         // $penyewa = penyewa::latest()->paginate(5);
         return view('penyewa.index',compact('penyewa'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -46,6 +46,8 @@ class penyewaController extends Controller
     {
        // dd($request->all());
      $request->validate([
+        'name' => 'required',
+        'level' => 'required',
         'nama_pemilik' => 'required',
         'alamat_pemilik' => 'required',
         'hp' => 'required',
@@ -57,6 +59,8 @@ class penyewaController extends Controller
     ]);
 
      $penyewa = penyewa::create([
+         'name' => $request->name,
+          'level' => $request->level,
         'nama_pemilik' => $request->nama_pemilik,
         'alamat_pemilik' => $request->alamat_pemilik,
         'hp' => $request->hp,
@@ -111,6 +115,8 @@ class penyewaController extends Controller
     {
         /// membuat validasi untuk title dan content wajib diisi
         $request->validate([
+        'name' => 'required',
+         'level' => 'required',
          'nama_pemilik' => 'required',
          'alamat_pemilik' => 'required',
          'hp' => 'required',
@@ -123,6 +129,8 @@ class penyewaController extends Controller
         $nama_usaha = $request->nama_usaha;
 
      $penyewa = penyewa::where('id', $request->id)->update([
+        'name' => $request->name,
+        'level' => $request->level,
         'nama_pemilik' => $request->nama_pemilik,
         'alamat_pemilik' => $request->alamat_pemilik,
         'hp' => $request->hp,

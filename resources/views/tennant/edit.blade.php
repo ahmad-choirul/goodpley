@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Tennant:</strong>
+                <strong>Nama Outlet:</strong>
                 <input type="text" name="nama_tennant" value="<?php echo $tennant->nama_tennant ?>" class="form-control" placeholder="Nama Tennant">
             </div>
         </div>
@@ -84,6 +84,14 @@
             <div class="form-group">
                 <strong>Harga:</strong>
                 <input type="text" name="harga" value="<?php echo $tennant->harga ?>" class="form-control" placeholder="harga">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>gambar:</strong>
+                <img src=" {{ asset('storage/images/'.$advertise->gambar) }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
+                <input type="file" name="gambar" class="form-control" placeholder="Gambar">
+
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

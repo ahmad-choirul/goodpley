@@ -37,13 +37,8 @@
         <div class="col-md-5">
             <div class="form-group">
                 <strong>Penyewa</strong>
-                <!-- <input type="text" name="id_penyewa" class="form-control" placeholder="Nama Penyewa"> -->
-                <select class="form-control m-bot15" name="id_lantai">
-                    <option value="">Pilih penyewa</option>
-                    @foreach ($penyewas as $penyewa)
-                    <option value="<?php echo $penyewa->id ?>" ><?php echo $penyewa->nama_pemilik ?></option>
-                    @endforeach
-                </select>
+                <input type="hidden" name="id_penyewa" value="<?php echo auth()->user()->id ?>" class="form-control" placeholder="Nama Penyewa">
+                <input type="text" name="nama_penyewa" readonly value="<?php echo auth()->user()->nama_pemilik ?>" class="form-control" placeholder="Nama Penyewa">
 
             </div>
         </div>
@@ -52,7 +47,7 @@
                 <strong>Tennant</strong>
                 <!-- <input type="text" name="id_tennant" class="form-control" placeholder="NAma Tennant"> -->
                 
-                 <select class="form-control m-bot15" name="id_lantai">
+                 <select class="form-control m-bot15" name="id_tennant" name="id_tennant">
                     <option value="">Pilih Tennant</option>
                     @foreach ($tennants as $tennant)
                     <option value="<?php echo $tennant->id ?>" ><?php echo $tennant->nama_tennant ?></option>

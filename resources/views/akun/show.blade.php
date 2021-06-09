@@ -8,10 +8,10 @@
     <div class="row mt-5 mb-5">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2> Detail Data Penyewa</h2>
+                <h2> Detail Data akun</h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('penyewa.index') }}"> Back</a>
+                <a class="btn btn-secondary" href="{{ route('akun.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -19,72 +19,50 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Username:</strong>
-                {{ $penyewa->name }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Level:</strong>
-                <?php if ($penyewa->level=='1'){ ?>
-                    ADMIN
-                    <?php } elseif($penyewa->level=='2'){ ?>
-                    PENYEWA
-                    <?php } elseif($penyewa->level=='3'){ ?>
-                    MARKETING
-                    <?php } elseif($penyewa->level=='4'){ ?>
-                    ADMINISTRASI
-                    <?php } elseif($penyewa->level=='5'){ ?>
-                    OUTSOURCING
-                <?php } ?>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
                 <strong>Nama Pemilik:</strong>
-                {{ $penyewa->nama_pemilik }}
+                {{ $akun->nama_pemilik }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Alamat pemilik:</strong>
-                {{ $penyewa->alamat_pemilik }}
+                {{ $akun->alamat_pemilik }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>No hp:</strong>
-                {{ $penyewa->hp }}
+                {{ $akun->hp }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email</strong>
-                {{ $penyewa->email }}
+                {{ $akun->email }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>KTP:</strong>
-                {{ $penyewa->ktp }}
+                {{ $akun->ktp }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nama Usaha:</strong>
-                {{ $penyewa->nama_usaha }}
+                {{ $akun->nama_usaha }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Alamat Usaha:</strong>
-                {{ $penyewa->alamat_usaha }}
+                {{ $akun->alamat_usaha }}
             </div>
         </div>
          <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Surat Ijin Usaha:</strong>
-                {{ $penyewa->no_siup }}
+                {{ $akun->no_siup }}
             </div>
         </div>
     </div>

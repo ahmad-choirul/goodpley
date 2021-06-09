@@ -9,6 +9,8 @@ use App\Models\tennant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use DateTime;
+
 class sewaController extends Controller
 {
     /**
@@ -19,14 +21,24 @@ class sewaController extends Controller
     public function index()
     {
         // $sewa = DB::table('sewas')->get();
+        $level  = auth()->user()->level;
+        $id  = auth()->user()->id;
+        if ($level=='1') {
          $sewa = DB::table('sewas')
-        ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa')
+            ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
         ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
-        ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
-
+        ->join('users', 'users.id', '=', 'sewas.id_penyewa')
         ->get();
+        }elseif ($level=='2') {
+         $sewa = DB::table('sewas')
+            ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa')
+            ->where('id_penyewa', $id)
+        ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
+        ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+        ->get();
+        }
         // $sewa = sewa::latest()->paginate(5);
-        return view('sewa.index',compact('sewa'))
+        return view('sewa.index',compact('sewa',$level))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -35,11 +47,12 @@ class sewaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function create()
     {
         $tennants = tennant::all();
-        $penyewas = penyewa::all();
-        return view('sewa.create', compact('tennants','penyewas'));
+        $users = penyewa::all();
+        return view('sewa.create', compact('tennants','users'));
     }
    
     /**
@@ -58,23 +71,28 @@ class sewaController extends Controller
         'tgl_awal_sewa' => 'required',
         'tgl_akhir_sewa' => 'required'
     ]);
+     $d1 = new DateTime('2011-09-01');
+$d2 = new DateTime('2012-06-06');
 
-     $sewa = sewa::create([
-        'tgl_sewa' => $request->tgl_sewa,
-        'id_penyewa' => $request->id_penyewa,
-        'id_tennant' => $request->id_tennant,
-        'biaya' => $request->biaya,
-        'tgl_awal_sewa' => $request->tgl_awal_sewa,
-        'tgl_akhir_sewa'     => $request->tgl_akhir_sewa
-    ]);
-       // dd($sewa);
+$interval = $d2->diff($d1);
 
-        /// insert setiap request dari form ke dalam database via model
-        /// jika menggunakan metode ini, maka nama field dan nama form harus sama
-
-        /// redirect jika sukses menyimpan data
+$bulan = $interval->m + 12*$interval->y;
+if ($bulan<6) {
+    return redirect()->route('sewa.index')
+     ->with('warning','Data sewa Gagal Di tambahkan masa sewa kurang dari 6 bulan');
+}else{
+    //  $sewa = sewa::create([
+    //     'tgl_sewa' => $request->tgl_sewa,
+    //     'id_penyewa' => $request->id_penyewa,
+    //     'id_tennant' => $request->id_tennant,
+    //     'biaya' => $request->biaya,
+    //     'tgl_awal_sewa' => $request->tgl_awal_sewa,
+    //     'tgl_akhir_sewa'     => $request->tgl_akhir_sewa
+    // ]);
+      
      return redirect()->route('sewa.index')
      ->with('success','Data sewa berhasil ditambahkan');
+ }
  }
 
     /**
@@ -97,8 +115,8 @@ class sewaController extends Controller
     public function edit(sewa $sewa)
     {
          $tennants = tennant::all();
-        $penyewas = penyewa::all();
-        return view('sewa.edit', compact('sewa','tennants','penyewas'));
+        $users = penyewa::all();
+        return view('sewa.edit', compact('sewa','tennants','users'));
    }
 
     /**
@@ -118,6 +136,7 @@ class sewaController extends Controller
          'biaya' => 'required',
          'tgl_awal_sewa' => 'required',
          'tgl_akhir_sewa' => 'required',
+         'status' => 'required',
      ]);
      $sewa = sewa::where('id', $request->id)->update([
         'tgl_sewa' => $request->tgl_sewa,
@@ -126,6 +145,7 @@ class sewaController extends Controller
         'biaya' => $request->biaya,
         'tgl_awal_sewa' => $request->tgl_awal_sewa,
         'tgl_akhir_sewa'     => $request->tgl_akhir_sewa,
+        'status'     => $request->status,
 
     ]);
         /// setelah berhasil mengubah data
