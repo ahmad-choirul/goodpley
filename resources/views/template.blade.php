@@ -32,7 +32,6 @@
                 <?php elseif($level=='2'): ?>
                     <li><a href="{{ route('sewa.index') }}">Sewa</a></li>
                 <?php endif ?>
-  
 
             </ul>
         </nav>
