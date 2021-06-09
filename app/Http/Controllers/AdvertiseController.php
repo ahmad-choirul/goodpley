@@ -122,14 +122,6 @@ class advertiseController extends Controller
             'harga' => 'required',
 
         ]);
-         $gambar = $request->gambar;
-     $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
-//Kemudian di simpan di storage dengan nama yang ditentukan tadi
- if ($filename=='') {
-         $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
-
-     }
-     $gambar->storeAs('public/images', $filename);
         $advertise = advertise::where('id', $request->id)->update([
             'nama_advertise' => $request->nama_advertise,
             'lebar' => $request->lebar,
@@ -137,7 +129,6 @@ class advertiseController extends Controller
             'id_lantai' => $request->id_lantai,
             'jenis' => $request->jenis,
             'harga' => $request->harga,
-            'gambar' => $filename,
         ]);
         /// setelah berhasil mengubah data
         return redirect()->route('advertise.index')
