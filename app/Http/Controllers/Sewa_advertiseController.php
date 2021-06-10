@@ -34,15 +34,14 @@ class Sewa_AdvertiseController extends Controller
         if ($id=='') {
          $sewas = DB::table('sewas')
          ->select('sewas.id','nama_pemilik','nama_tennant')
-         ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+         ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
          ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
          ->get();
      }else{
          $sewas = DB::table('sewas')
          ->select('sewas.id','nama_pemilik','nama_tennant')
-         ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+         ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
          ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
-
          ->where('sewas.id',$id)
          ->get();
      }

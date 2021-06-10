@@ -23,18 +23,19 @@ class sewaController extends Controller
         // $sewa = DB::table('sewas')->get();
         $level  = auth()->user()->level;
         $id  = auth()->user()->id;
+        echo $id;
         if ($level=='1') {
            $sewa = DB::table('sewas')
            ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
            ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
-           ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+           ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
            ->get();
        }elseif ($level=='2') {
            $sewa = DB::table('sewas')
            ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
-           ->where('id_penyewa', $id)
+           ->where('id_users', $id)
            ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
-           ->join('users', 'users.id', '=', 'sewas.id_penyewa')
+           ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
            ->get();
        }
         // $sewa = sewa::latest()->paginate(5);
