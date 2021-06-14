@@ -162,6 +162,24 @@ class sewaController extends Controller
         'status'     => $request->status,
 
       ]);
+      if ($request->status=='1') {
+         $penyewa = penyewa::where('id', $request->id_penyewa)->update([
+        'status'     => '0'
+      ]);
+
+         $tennants = tennant::where('id', $request->id_tennant)->update([
+        'status'     => '0'
+      ]);
+      }
+         if ($request->status=='0') {
+         $penyewa = penyewa::where('id', $request->id_penyewa)->update([
+        'status'     => '1'
+      ]);
+
+         $tennants = tennant::where('id', $request->id_tennant)->update([
+        'status'     => '1'
+      ]);
+      }
         /// setelah berhasil mengubah data
       return redirect()->route('sewa.index')
       ->with('success','Data berhasil di ubah');
