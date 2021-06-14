@@ -61,18 +61,6 @@ class TennantController extends Controller
         ->join('lantai', 'tennants.id_lantai', '=', 'lantai.id')
         ->join('kategoris', 'tennants.id_kategori', '=', 'kategoris.id');
          $query->orwhere('status','1');
-        if ($tglawal!=''&&$tglakhir!='') {
-            $resultidtennant[] = null;
-            $getidtennant= DB::table('sewas')->select('id_tennant')
-                ->from('sewas')
-                ->whereBetween('tgl_awal_sewa', ['2021-06-24', '2021-07-10'])
-                ->orwhereBetween('tgl_akhir_sewa', ['2021-06-24', '2021-07-10']);
-                for ($i=0; $i < $getidtennant; $i++) { 
-                    $resultidtennant[$i]=$getidtennant->id_tennant;
-                }
-            $query->orwhereNotIn('id_tennant',$resultidtennant);
-            // code...
-        }
         if ($cari['id_kategori']!='') {
             $query->orwhere('id_kategori',$cari['id_kategori']);
         }

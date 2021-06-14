@@ -28,10 +28,17 @@
                 <li><a href="{{ route('tennant.index') }}">Outlet</a></li>
                 <li><a href="{{ route('penyewa.index') }}">Penyewa</a></li>
                 <li><a href="{{ route('advertise.index') }}">Advertise</a></li>
+                <li><a href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
                  <li><a href="{{ route('tagihan.index') }}">Tagihan</a></li>
                 <li><a href="{{ route('sewa.index') }}">Sewa</a></li>
                 <?php elseif($level=='2'): ?>
-                    <li><a href="{{ route('sewa.index') }}">Sewa</a></li>
+                <li><a href="{{ route('penyewa.index') }}">List Usaha</a></li>
+
+                    <li><a href="{{ route('sewa.index') }}">Sewa Tempat</a></li>
+                 <li><a href="{{ route('tagihan.index') }}">Tagihan</a></li>
+                <li><a href="{{ route('sewa_advertise.index') }}">Marcom</a></li>
+
+
                 <?php endif ?>
 
             </ul>

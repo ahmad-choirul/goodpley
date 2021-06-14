@@ -46,16 +46,18 @@
             <td>
                 <?php 
                 if ($post->status=='0') {
-                   ?>
-                   <button class="btn btn-warning">Belum</button>
-               <?php } else{ ?>
+                 ?>
+                 <button class="btn btn-warning">Belum</button>
+             <?php } else{ ?>
                 <button class="btn btn-success">Sudah</button>
             <?php } ?>
         </td>
         <td class="text-center">
+            <?php if (  $post->status=='1'): ?>
                 <a class="btn btn-success btn-sm" href="{{ route('sewa_advertise.create', ['id' => $post->id]) }}">Marcom</a>
-                <?php $level = auth()->user()->level ; if ($level=='1'): ?>
-                    
+            <?php endif ?>
+            <?php $level = auth()->user()->level ; if ($level=='1'): ?>
+            
             <form action="{{ route('sewa.destroy',$post->id) }}" method="POST">
                 <a class="btn btn-info btn-sm" href="{{ route('sewa.show',$post->id) }}">Show</a>
 
@@ -67,10 +69,10 @@
                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
             </form>
             
-                <?php endif ?>
-        </td>
-    </tr>
-    @endforeach
+        <?php endif ?>
+    </td>
+</tr>
+@endforeach
 </table>
 </div>
 

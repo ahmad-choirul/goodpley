@@ -220,14 +220,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 
                     <div class="row">
-                        <div class="form-group col-md-3">
-                            <label>tanggal awal</label>
-                            <input type="date" name="tglawal" placeholder="tgl awal" value="<?php echo $cari['tglawal'] ?>" class="form-control">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label>tanggal akhir</label>
-                            <input type="date" name="tglakhir" placeholder="tgl Akhir" value="<?php echo $cari['tglakhir'] ?>" class="form-control">
-                        </div>
+                      
                         <div class="form-group col-md-2">
                             <label>Kategori </label>
                             <select class="form-control m-bot15" name="id_kategori">
