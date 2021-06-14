@@ -18,7 +18,7 @@ class TagihanController extends Controller
     public function index()
     {
         $tagihan = tagihans::latest()->paginate(5);
-        return view('tagihan.index',compact('tagihan','penyewa'))
+        return view('tagihan.index',compact('tagihan'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -50,19 +50,13 @@ class TagihanController extends Controller
         'deskripsi' => 'required',
         'nominal' => 'required',
         'bukti_tagihan' => 'required',
-        'bukti_pembayaran' => 'required',
-        'tgl_pembayaran' => 'required',
-        'tgl_pembayaran' => 'required',
         'id_users' => 'required', //id admin yg input pembayaran
         'status' => 'required',
     ]);
-     $bukti_tagihann = $request->bukti_tagihan;
-     $bukti_pembayaran = $request->bukti_pembayaran;
+     $bukti_tagihan = $request->bukti_tagihan;
      $filename = date('YmHis') . Str::random(8) . "." . $bukti_tagihan->getClientOriginalExtension();
-     $filename2 = date('YmHis') . Str::random(8) . "." . $bukti_pembayaran->getClientOriginalExtension();
 //Kemudian di simpan di storage dengan nama yang ditentukan tadi
      $bukti_tagihan->storeAs('public/images', $filename);
-     $bukti_pembayaran->storeAs('public/images', $filename);
 //Nama ini juga disimpan ke kolom, misal ke artikel
 
      $tagihan = tagihan::create([
@@ -72,8 +66,6 @@ class TagihanController extends Controller
         'deskripsi' => $request->deskripsi,
         'nominal' => $request->nominal,
         'bukti_tagihan' => $filename,
-        'bukti_pembayaran' => $filename2,
-        'tgl_pembayaran' => $request->tgl_pembayaran,
         'id_users' => $request->id_users, //id admin yg input pembayaran
         'status' => $request->status,
 

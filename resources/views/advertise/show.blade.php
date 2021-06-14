@@ -11,7 +11,7 @@
             <h2> Data Atrium/Iklan</h2>
         </div>
         <div class="float-right">
-            <a class="btn btn-secondary" href="{{ route('') }}"> Back</a>
+            <a class="btn btn-secondary" href="<?php echo route('advertise.index') ?>"> Back</a>
         </div>
     </div>
 </div>
@@ -20,36 +20,38 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Nama Atrium/Iklan:</strong>
-            {{ $penyewa->nama_advertise }}
+            {{ $advertise->nama_advertise }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Lebar:</strong>
-            {{ $penyewa->lebar}}
+            {{ $advertise->lebar}}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Panjang:</strong>
-            {{ $penyewa->panjang }}
+            {{ $advertise->panjang }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Lantai:</strong>
-            {{ $penyewa->lantai }}
+            {{ $advertise->id_lantai }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Jenis:</strong>
-            <?php if ($post->jenis=='1'){ ?>
-                ATRIUM
-            <?php } elseif($post->jenis=='2'){ ?>
-              ESKALATOR
-          <?php }  ?>
-      </div>
+            {{ $advertise->jenis }}
+        </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Harga / 6 bulan:</strong>
+            {{ $advertise->harga }}
+        </div>
   </div>
 </div>
 @endsection

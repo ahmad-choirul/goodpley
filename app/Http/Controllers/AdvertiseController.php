@@ -127,7 +127,7 @@ class advertiseController extends Controller
             'lebar' => $request->lebar,
             'panjang' => $request->panjang,
             'id_lantai' => $request->id_lantai,
-            'jenis' => $request->jenis,
+            'jenis' => $request->jenis, 
             'harga' => $request->harga,
         ]);
         /// setelah berhasil mengubah data
