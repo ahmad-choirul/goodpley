@@ -72,7 +72,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('lantai.index') }}">Data Lantai</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('kategori.index') }}">Kategori</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('tennant.index') }}">Outlet</a></li>
-                    <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">Penyewa</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Usaha</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('advertise.index') }}">Advertise</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
