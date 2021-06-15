@@ -2,99 +2,124 @@
 <html>
 <head>
     <title>GOODPLEY</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
+    <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Smart Shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+<!-- pignose css -->
+<link href="{{ URL::asset('css/pignose.layerslider.css') }}" rel="stylesheet" type="text/css" media="all" />
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
 
+<!-- //pignose css -->
+<link href="{{ URL::asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.min.js') }}"></script>
+<!-- //js -->
+<!-- cart -->
+<script src="{{ URL::asset('js/simpleCart.min.js') }}"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="{{ URL::asset('js/bootstrap-3.1.1.min.js') }}"></script>
+<!-- //for bootstrap working -->
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+<script src="{{ URL::asset('js/jquery.easing.min.js') }}"></script>
 </head>
 <body>
-  <header>
-    <div class="row">
-        <div class="col-md-3"> <a class="logo" href="/"><img src="{{ URL::asset('images/logo32.png') }}" alt="logo"></a></div>
-        <div class="col-md-7">
-           <nav>
-            <ul></ul>
-            <ul class="nav__links">
-             <?php
-             $level = auth()->user()->level;
-             if ($level=='1'): ?>
-                <li><a href="{{ route('lantai.index') }}">Data Lantai</a></li>
-                <li><a href="{{ route('kategori.index') }}">Kategori</a></li>
-                <li><a href="{{ route('tennant.index') }}">Outlet</a></li>
-                <li><a href="{{ route('penyewa.index') }}">Penyewa</a></li>
-                <li><a href="{{ route('advertise.index') }}">Advertise</a></li>
-                <li><a href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
-                 <li><a href="{{ route('tagihan.index') }}">Tagihan</a></li>
-                <li><a href="{{ route('sewa.index') }}">Sewa</a></li>
-                <?php elseif($level=='2'): ?>
-                <li><a href="{{ route('penyewa.index') }}">List Usaha</a></li>
-
-                    <li><a href="{{ route('sewa.index') }}">Sewa Tempat</a></li>
-                 <li><a href="{{ route('tagihan.index') }}">Tagihan</a></li>
-                <li><a href="{{ route('sewa_advertise.index') }}">Marcom</a></li>
-
-
-                <?php endif ?>
-
-            </ul>
-        </nav>
-    </div>
-    <div class="col-md-2">
-
-        <div class="block px-4 py-2 text-xs text-gray-400">
-            {{ __('Manage Account') }}
+     <div class="header-bot">
+    <div class="container">
+        <div class="col-md-3 header-left">
+            <h1><a href="index.html"><img src="images/logo3.png"></a></h1>
         </div>
+        <div class="col-md-6 header-middle">
 
-                            <a href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
-                            </a>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                this.closest('form').submit();" class=" btn btn-warning">
-                                {{ __('Log Out') }}
-                            </a>
-                        </form>
-                        
-
-                    </div>
-                </div>
-
-
-
-            </header>
-            <div id="mobile__menu" class="overlay">
-                <a class="close">&times;</a>
-                <div class="overlay__content">
-                    <a href="#">Services</a>
-                    <a href="#">Projects</a>
-                    <a href="#">About</a>
-                </div>
+        </div>
+        <div class="col-md-3 header-right footer-bottom">
+                <?php 
+                    echo "Today is " . date("Y/m/d")." ". date("h:i:sa");
+                 ?>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+ <div class="ban-top">
+    <div class="container">
+        <div class="top_nav_left">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
-            <script type="text/javascript" src="/js/mobile.js"></script>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav menu__list">
+          <!--       <li class="active menu__item menu__item--current"><a class="menu__link" href="">Home <span class="sr-only">(current)</span></a></li> -->
+                <?php
+                 $level = auth()->user()->level;
+                 if ($level=='1'): ?>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('lantai.index') }}">Data Lantai</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('kategori.index') }}">Kategori</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('tennant.index') }}">Outlet</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">Penyewa</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('advertise.index') }}">Advertise</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa</a></li>
+                    <?php elseif($level=='2'): ?>
+                        <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Usaha</a></li>
 
-            <div class="container">
-                @yield('content')
-            </div>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/60c15bf87f4b000ac036c182/1f7pkugoi';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-        </body>
-        </html>
+                        <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa Tempat</a></li>
+                        <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
+                        <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Marcom</a></li>
+                    <?php endif ?>
+
+                    
+
+         
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
+
+             
+
+
+
+                  <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                      <li class=" menu__item"><a class="menu__link" href="{{ route('logout') }}"  onclick="event.preventDefault();
+                    this.closest('form').submit();" > Logout</a></
+<!-- 
+                   <li > <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    this.closest('form').submit();" class=" menu__item">
+              
+                </a></li> -->
+            </form>
+     
+        
+    </ul>
+</div>
+</div>
+</nav>  
+</div>
+<div class="top_nav_right">
+
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+    @yield('content');
+</div>
+
+
