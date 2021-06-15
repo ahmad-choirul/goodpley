@@ -32,6 +32,8 @@ use App\Http\Controllers\TagihanController;
 Route::resource('tagihan', TagihanController::class);
 use App\Http\Controllers\Sewa_AdvertiseController;
 Route::resource('sewa_advertise', Sewa_AdvertiseController::class);
+use App\Http\Controllers\KomplainController;
+Route::resource('komplain', KomplainController::class);
 
 use App\Http\Controllers\SewaController;
 Route::resource('sewa', SewaController::class);
