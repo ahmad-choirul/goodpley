@@ -22,12 +22,13 @@ class TagihanController extends Controller
         $id  = auth()->user()->id;
        if ($level=='2') {
          $tagihan = DB::table('tagihans')
+         ->select('nama_pemilik','jenis_tagihan','tgl_tagihan','deskripsi','bukti_tagihan','bukti_pembayaran','tagihans.id_users','tagihans.status','tagihans.id','nominal')
          ->join('sewas', 'sewas.id', '=', 'tagihans.id_sewa')
          ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
          ->where('penyewas.id_users', $id)
-         ->get();
+         ->get();   
      }else{
-        $tagihan = DB::table('tagihans')
+        $tagihan = DB::table('tagihans')->select('nama_pemilik','jenis_tagihan','tgl_tagihan','deskripsi','bukti_tagihan','bukti_pembayaran','tagihans.id_users','tagihans.status','tagihans.id','nominal')
          ->join('sewas', 'sewas.id', '=', 'tagihans.id_sewa')
          ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
          

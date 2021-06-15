@@ -34,11 +34,11 @@
                  <select class="form-control m-bot15" name="jenis">
                   
                     <option value="">-</option>
-                    <option value="">Air</option>
-                    <option value="">Listrik</option>
-                    <option value="">Saluran Air</option>
-                    <option value="">Corong Udara</option>
-                    <option value="">Lainnya</option>
+                    <option value="Air">Air</option>
+                    <option value="Listrik">Listrik</option>
+                    <option value="saluran air">Saluran Air</option>
+                    <option value="corong udara">Corong Udara</option>
+                    <option value="lainya">Lainnya</option>
                 </select>
             </div>
         </div>

@@ -10,7 +10,7 @@ class komplain extends Model
 use HasFactory;
 protected $table = 'komplain';
         protected $fillable = [
-'jenis','rincian_masalah','rincian_balasan','id_outsourcing','id_penyewa','status'
+'jenis','rincian_masalah','rincian_balasan','id_outsourcing','id_users','status'
  ];
 
 }

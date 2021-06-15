@@ -40,21 +40,17 @@ class KomplainController extends Controller
      $request->validate([
         'jenis' => 'required',
         'rincian_masalah' => 'required',
-        'rincian_balasan' => 'required',
-        'status' => 'required',
 
     ]);
 
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
-     
+      $id  = auth()->user()->id;
      $komplain = komplain::create([
         'jenis' => $request->jenis,
         'rincian_masalah' => $request->rincian_masalah,
-        'rincian_balasan' => $request->rincian_balasan,
-        'id_penyewa' => $request->id_penyewa,
-        'id_outsourcing' => $request->id_outsourcing,
-        'status' => $request->status,
+        'id_users' => $id,
+        'status' => 0,
     ]);
 
         /// redirect jika sukses menyimpan data
@@ -81,7 +77,13 @@ class KomplainController extends Controller
      */
     public function edit(komplain $komplain)
     {
+      $id  = auth()->user()->id;
+      if ($id=='2') {
       return view('komplain.edit',compact('komplain'));
+      }else{
+      return view('komplain.edit_out',compact('komplain'));
+
+      }
   }
 
     /**
@@ -109,7 +111,7 @@ class KomplainController extends Controller
         'jenis' => $request->jenis,
         'rincian_masalah' => $request->rincian_masalah,
         'rincian_balasan' => $request->rincian_balasan,
-        'id_penyewa' => $request->id_penyewa,
+        'id_users' => $request->id_users,
         'id_outsourcing' => $request->id_outsourcing,
         'status' => $request->status,
     ]);

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row mt-5 mb-5">
-        <br>
+    <br>
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
             <h2>Edit Post</h2>
@@ -31,25 +31,25 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                  <strong>Jenis Komplain:</strong>
-                <select class="form-control m-bot15" name="id_lantai">
+              <strong>Jenis Komplain:</strong>
+              <select class="form-control m-bot15" name="id_lantai">
                   
-                    <option value=""><?php echo $komplain->rincian_masalah ?></option>
-                    <option value="">Air</option>
-                    <option value="">Listrik</option>
-                    <option value="">Saluran Air</option>
-                    <option value="">Corong Udara</option>
-                    <option value="">Lainnya</option>
-                </select>
+                <option value=""><?php echo $komplain->rincian_masalah ?></option>
+                <option value="Air">Air</option>
+                <option value="Listrik">Listrik</option>
+                <option value="saluran air">Saluran Air</option>
+                <option value="corong udara">Corong Udara</option>
+                <option value="lainya">Lainnya</option>
+            </select>
 
-            </div>
         </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                <strong>Rincian Masalah:</strong>
-               <textarea class="form-control" name="rincian_masalah" value="<?php echo $komplain->rincian_masalah ?>"></textarea>
-            </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <strong>Rincian Masalah:</strong>
+            <textarea class="form-control" name="rincian_masalah" value="<?php echo $komplain->rincian_masalah ?>"></textarea>
         </div>
+    </div>
       <!--   <div class="col-md-6">
            <div class="form-group">
                 <strong>Penyewa:</strong>
@@ -66,15 +66,15 @@
         <div class="col-md-12">
             <div class="form-group">
                 <strong>Rincian Balasan:</strong>
-               <textarea class="form-control" name="rincian_balasan" value="<?php echo $komplain->rincian_balasan ?>" readonly=""></textarea>
-         </div>
+                <textarea class="form-control" name="rincian_balasan" value="<?php echo $komplain->rincian_balasan ?>" readonly=""></textarea>
+            </div>
         </div>
         <div class="col-md-12">
           <strong>Status:</strong>
-               <textarea class="form-control" name="status" value="<?php echo $komplain->status?>" readonly=""></textarea>
-  
-        </div>
-        <div class="col-md-12 text-center">
+          <textarea class="form-control" name="status" value="<?php echo $komplain->status?>" readonly=""></textarea>
+          
+      </div>
+      <div class="col-md-12 text-center">
           <button type="submit" class="btn btn-primary btn-block">Update</button>
       </div>
   </div>
