@@ -60,28 +60,20 @@ class TennantController extends Controller
         ->select('tennants.id','nama_tennant','nama_lantai','nama_kategori','lebar','panjang','gambar','harga')
         ->join('lantai', 'tennants.id_lantai', '=', 'lantai.id')
         ->join('kategoris', 'tennants.id_kategori', '=', 'kategoris.id');
-         $query->orwhere('status','1');
+        $query->orwhere('status','1');
         if ($cari['id_kategori']!='') {
             $query->orwhere('id_kategori',$cari['id_kategori']);
         }
         if ($cari['id_lantai']!='') {
-         $query->orwhere('id_lantai',$cari['id_lantai']);
-     }
-     $tennant = $query->get();
-// dd(DB::getQueryLog()); 
-
-     return view('tennant.cari',compact('tennant','kategoris','lantais','cari'));
- }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+           $query->orwhere('id_lantai',$cari['id_lantai']);
+       }
+       $tennant = $query->get();
+       return view('tennant.cari',compact('tennant','kategoris','lantais','cari'));
+   }
+   public function store(Request $request)
+   {
        // dd($request->all());
-     $request->validate([
+       $request->validate([
         'nama_tennant' => 'required',
         'id_lantai' => 'required',
         'id_kategori' => 'required',
@@ -90,14 +82,14 @@ class TennantController extends Controller
         'gambar' => 'required',
         'harga' => 'required',
     ]);
-     $gambar = $request->gambar;
-     $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
+       $gambar = $request->gambar;
+       $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
 //Kemudian di simpan di storage dengan nama yang ditentukan tadi
 
-     $gambar->storeAs('public/images', $filename);
+       $gambar->storeAs('public/images', $filename);
 //Nama ini juga disimpan ke kolom, misal ke artikel
 
-     $tennant = tennant::create([
+       $tennant = tennant::create([
         'nama_tennant' => $request->nama_tennant,
         'id_lantai' => $request->id_lantai,
         'id_kategori' => $request->id_kategori,
@@ -112,9 +104,9 @@ class TennantController extends Controller
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
 
         /// redirect jika sukses menyimpan data
-     return redirect()->route('tennant.index')
-     ->with('success','Data tennant berhasil ditambahkan');
- }
+       return redirect()->route('tennant.index')
+       ->with('success','Data tennant berhasil ditambahkan');
+   }
 
     /**
      * Display the specified resource.
@@ -135,10 +127,10 @@ class TennantController extends Controller
      */
     public function edit(tennant $tennant)
     {
-       $kategoris = kategori::all();
-       $lantais = lantai::all();
-       return view('tennant.edit',compact('tennant','kategoris','lantais'));
-   }
+     $kategoris = kategori::all();
+     $lantais = lantai::all();
+     return view('tennant.edit',compact('tennant','kategoris','lantais'));
+ }
 
     /**
      * Update the specified resource in storage.
@@ -151,27 +143,27 @@ class TennantController extends Controller
     {
         /// membuat validasi untuk title dan content wajib diisi
         $request->validate([
-         'nama_tennant' => 'required',
-         'id_lantai' => 'required',
-         'id_kategori' => 'required',
-         'lebar' => 'required',
-         'panjang' => 'required',
-         'gambar' => 'required',
-         'harga' => 'required',
-     ]);
+           'nama_tennant' => 'required',
+           'id_lantai' => 'required',
+           'id_kategori' => 'required',
+           'lebar' => 'required',
+           'panjang' => 'required',
+           'gambar' => 'required',
+           'harga' => 'required',
+       ]);
         $gambar = $request->gambar;
 
         $filename = $request->nama_gambar;
         if ($filename=='') {
-         $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
+           $filename = date('YmHis') . Str::random(8) . "." . $gambar->getClientOriginalExtension();
 
-     }
+       }
 //Kemudian di simpan di storage dengan nama yang ditentukan tadi
-     $gambar->storeAs('public/images', $filename);
+       $gambar->storeAs('public/images', $filename);
 //Nama ini juga disimpan ke kolom, misal ke artikel
         /// mengubah data berdasarkan request dan parameter yang dikirimkan
        // $tennant->update($request->all());
-     $tennant = tennant::where('id', $request->id)->update([
+       $tennant = tennant::where('id', $request->id)->update([
         'nama_tennant' => $request->nama_tennant,
         'id_lantai' => $request->id_lantai,
         'id_kategori' => $request->id_kategori,
@@ -181,9 +173,9 @@ class TennantController extends Controller
         'harga' => $request->harga,
     ]);
         /// setelah berhasil mengubah data
-     return redirect()->route('tennant.index')
-     ->with('success','Data berhasil di ubah');
- }
+       return redirect()->route('tennant.index')
+       ->with('success','Data berhasil di ubah');
+   }
 
     /**
      * Remove the specified resource from storage.
