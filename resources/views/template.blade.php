@@ -76,12 +76,16 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa</a></li>
+                      <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
+
                     <?php elseif($level=='2'): ?>
                         <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Usaha</a></li>
 
                         <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa Tempat</a></li>
                         <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
                         <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Marcom</a></li>
+                         <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
+
                     <?php endif ?>
 
                     

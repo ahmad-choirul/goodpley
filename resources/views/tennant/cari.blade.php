@@ -58,7 +58,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             
         </div>
         <div class="col-md-3 header-right footer-bottom">
-           
+         
         </div>
         <div class="clearfix"></div>
     </div>
@@ -77,95 +77,95 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                  </button>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav menu__list">
-                    <li class="active menu__item menu__item--current"><a class="menu__link" href="">Home <span class="sr-only">(current)</span></a></li>
-                    <?php 
- 
- $id  = auth()->user();
-                     ?>
-                     <?php if ($id==''): ?>
-                       <li class=" menu__item"><a class="menu__link" href="{{ route('register') }}">Register</a></li>
-                    <li class=" menu__item"><a class="menu__link" href="{{ route('login') }}">Login</a></li>
-                    <?php else: ?>
-                          <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav menu__list">
+                <li class="active menu__item menu__item--current"><a class="menu__link" href="">Home <span class="sr-only">(current)</span></a></li>
+                <?php 
+                
+                $id  = auth()->user();
+                ?>
+                <?php if ($id==''): ?>
+                 <li class=" menu__item"><a class="menu__link" href="{{ route('register') }}">Register</a></li>
+                 <li class=" menu__item"><a class="menu__link" href="{{ route('login') }}">Login</a></li>
+                 <?php else: ?>
+                  <form method="POST" action="{{ route('logout') }}">
+                    @csrf
 
-                                <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                this.closest('form').submit();" class=" btn btn-warning">
-                                {{ __('Log Out') }}
-                            </a>
-                        </form>
-                     <?php endif ?>
-                     
-                     </ul>
-                </div>
-              </div>
-            </nav>  
-        </div>
-        <div class="top_nav_right">
-            <div class="cart box_1">
-                        <a href="checkout.html">
-                            <h3> <div class="total">
-                                <i class="fa fa-users" aria-hidden="true">GOOD</i>
-                              </div>
-                                
-                            </h3>
-                        </a>
-                        <p><a href="javascript:;" class="simpleCart_empty">PLEY</a></p>
-                        
-            </div>  
-        </div>
-        <div class="clearfix"></div>
-    </div>
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    this.closest('form').submit();" class=" btn btn-warning">
+                    {{ __('Log Out') }}
+                </a>
+            </form>
+        <?php endif ?>
+        
+    </ul>
+</div>
+</div>
+</nav>  
+</div>
+<div class="top_nav_right">
+    <div class="cart box_1">
+        <a href="checkout.html">
+            <h3> <div class="total">
+                <i class="fa fa-users" aria-hidden="true">GOOD</i>
+            </div>
+            
+        </h3>
+    </a>
+    <p><a href="javascript:;" class="simpleCart_empty">PLEY</a></p>
+    
+</div>  
+</div>
+<div class="clearfix"></div>
+</div>
 </div>
 <!-- //banner-top -->
 <!-- banner -->
 <div class="banner-grid">
     <div id="visual">
-            <div class="slide-visual">
-                <!-- Slide Image Area (1000 x 424) -->
-                <ul class="slide-group">
-                    <li><img class="img-responsive" src="images/ba1.jpg" alt="Dummy Image" /></li>
-                    <li><img class="img-responsive" src="images/ba2.jpg" alt="Dummy Image" /></li>
-         <!--            <li><img class="img-responsive" src="images/ba3.jpg" alt="Dummy Image" /></li> -->
-                </ul>
+        <div class="slide-visual">
+            <!-- Slide Image Area (1000 x 424) -->
+            <ul class="slide-group">
+                <li><img class="img-responsive" src="images/ba1.jpg" alt="Dummy Image" /></li>
+                <li><img class="img-responsive" src="images/ba2.jpg" alt="Dummy Image" /></li>
+                <!--            <li><img class="img-responsive" src="images/ba3.jpg" alt="Dummy Image" /></li> -->
+            </ul>
 
-                <!-- Slide Description Image Area (316 x 328) -->
-                <div class="script-wrap">
-                    <ul class="script-group">
-                        <li><div class="inner-script"><img class="img-responsive" src="images/baa1.jpg" alt="Dummy Image" /></div></li>
-                        <li><div class="inner-script"><img class="img-responsive" src="images/baa2.jpg" alt="Dummy Image" /></div></li>
-                     <!--    <li><div class="inner-script"><img class="img-responsive" src="images/baa3.jpg" alt="Dummy Image" /></div></li> -->
-                    </ul>
-                    <div class="slide-controller">
-                        <a href="#" class="btn-prev"><img src="images/btn_prev.png" alt="Prev Slide" /></a>
-                        <a href="#" class="btn-play"><img src="images/btn_play.png" alt="Start Slide" /></a>
-                        <a href="#" class="btn-pause"><img src="images/btn_pause.png" alt="Pause Slide" /></a>
-                        <a href="#" class="btn-next"><img src="images/btn_next.png" alt="Next Slide" /></a>
-                    </div>
+            <!-- Slide Description Image Area (316 x 328) -->
+            <div class="script-wrap">
+                <ul class="script-group">
+                    <li><div class="inner-script"><img class="img-responsive" src="images/baa1.jpg" alt="Dummy Image" /></div></li>
+                    <li><div class="inner-script"><img class="img-responsive" src="images/baa2.jpg" alt="Dummy Image" /></div></li>
+                    <!--    <li><div class="inner-script"><img class="img-responsive" src="images/baa3.jpg" alt="Dummy Image" /></div></li> -->
+                </ul>
+                <div class="slide-controller">
+                    <a href="#" class="btn-prev"><img src="images/btn_prev.png" alt="Prev Slide" /></a>
+                    <a href="#" class="btn-play"><img src="images/btn_play.png" alt="Start Slide" /></a>
+                    <a href="#" class="btn-pause"><img src="images/btn_pause.png" alt="Pause Slide" /></a>
+                    <a href="#" class="btn-next"><img src="images/btn_next.png" alt="Next Slide" /></a>
                 </div>
-                <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
+    </div>
     <script type="text/javascript" src="js/pignose.layerslider.js"></script>
     <script type="text/javascript">
     //<![CDATA[
-        $(window).load(function() {
-            $('#visual').pignoseLayerSlider({
-                play    : '.btn-play',
-                pause   : '.btn-pause',
-                next    : '.btn-next',
-                prev    : '.btn-prev'
-            });
+    $(window).load(function() {
+        $('#visual').pignoseLayerSlider({
+            play    : '.btn-play',
+            pause   : '.btn-pause',
+            next    : '.btn-next',
+            prev    : '.btn-prev'
         });
+    });
     //]]>
-    </script>
+</script>
 
 </div>
 <!-- //banner -->
@@ -174,7 +174,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <div class="new_arrivals">
     <div class="container">
         <h3><span>Good </span>News</h3>
-            <div class="new_grids">
+        <div class="new_grids">
             <div class="col-md-4 new-gd-left">
                 <img src="images/wed1.jpg" alt=" " />
                 <div class="wed-brand simpleCart_shelfItem">
@@ -185,9 +185,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                 <br>
                 <div class="new-levis">
                   <H2> <b>SHOW UP YOUR BUSSINESS</b></H2>
-                </div>
-                <div class="new-levis">
-                    <h1 style="color: #FDA30E;">WITH A PERFECT PARTNER</H1>
+              </div>
+              <div class="new-levis">
+                <h1 style="color: #FDA30E;">WITH A PERFECT PARTNER</H1>
                 </div><br><br>
                 <h3 style="text-align: center;">-G O O D P L E Y-</h3>
                 <div class="clearfix"></div>
@@ -195,7 +195,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <div class="col-md-4 new-gd-left">
                 <img src="images/wed2.jpg" alt=" " />
                 <div class="wed-brandtwo simpleCart_shelfItem">
-                   
+                 
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -224,32 +224,32 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                         <div class="form-group col-md-2">
                             <label>Kategori </label>
                             <select class="form-control m-bot15" name="id_kategori">
-                            <option value="">Pilih kategori</option>
-                            @foreach ($kategoris as $kategori)
-                            <option value="<?php echo $kategori->id ?>"   <?php echo ( $kategori->id == $cari['id_kategori']) ? 'selected' : ''  ?>><?php echo $kategori->nama_kategori ?></option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label>Lantai</label>
-                        <select class="form-control m-bot15" name="id_lantai">
-                            <option value="">Pilih Lantai</option>
-                            @foreach ($lantais as $lantai)
-                            <option value="<?php echo $lantai->id ?>" <?php echo ( $cari['id_lantai'] == $lantai->id) ? 'selected' : '' ?> ><?php echo $lantai->nama_lantai ?></option>
-                            @endforeach
-                        </select>
-                    </div>
+                                <option value="">Pilih kategori</option>
+                                @foreach ($kategoris as $kategori)
+                                <option value="<?php echo $kategori->id ?>"   <?php echo ( $kategori->id == $cari['id_kategori']) ? 'selected' : ''  ?>><?php echo $kategori->nama_kategori ?></option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Lantai</label>
+                            <select class="form-control m-bot15" name="id_lantai">
+                                <option value="">Pilih Lantai</option>
+                                @foreach ($lantais as $lantai)
+                                <option value="<?php echo $lantai->id ?>" <?php echo ( $cari['id_lantai'] == $lantai->id) ? 'selected' : '' ?> ><?php echo $lantai->nama_lantai ?></option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <div class="form-group col-md-2">
-                     <label></label>
-                     <input type="submit" class="form-control btn btn-info">
-                 </div>
-             </div>
-         </form>
-     </div>
- </div>
+                        <div class="form-group col-md-2">
+                           <label></label>
+                           <input type="submit" class="form-control btn btn-info">
+                       </div>
+                   </div>
+               </form>
+           </div>
+       </div>
 
-</div>
+   </div>
 </div>
 <!-- //header-bot -->
 <!-- banner -->
@@ -375,7 +375,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             </div>
         </div> -->
         <div class="clearfix"></div>
-   
+        
 
     </div>
 </div>
@@ -384,15 +384,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/60c15bf87f4b000ac036c182/1f7pkugoi';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/60c15bf87f4b000ac036c182/1f7pkugoi';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
 </script>
 <!--End of Tawk.to Script-->
 <!-- //login -->
