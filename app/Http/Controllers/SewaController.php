@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\sewa;
 use App\Models\penyewa;
 use App\Models\tennant;
+use App\Models\tagihans;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -30,18 +31,18 @@ class sewaController extends Controller
        ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
        ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
        ->get();
-     }elseif ($level=='2') {
+   }elseif ($level=='2') {
        $sewa = DB::table('sewas')
        ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
        ->where('id_users', $id)
        ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
        ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
        ->get();
-     }
-        // $sewa = sewa::latest()->paginate(5);
-     return view('sewa.index',compact('sewa',$level))
-     ->with('i', (request()->input('page', 1) - 1) * 5);
    }
+        // $sewa = sewa::latest()->paginate(5);
+   return view('sewa.index',compact('sewa',$level))
+   ->with('i', (request()->input('page', 1) - 1) * 5);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -59,13 +60,13 @@ class sewaController extends Controller
      if ($level=='1') {
        $penyewas = DB::table('penyewas')
        ->get();  
-     }elseif ($level=='2') {
+   }elseif ($level=='2') {
        $penyewas = DB::table('penyewas')
        ->where('id_users', $id)
        ->get();
-     }
-     return view('sewa.create', compact('tennants','penyewas'));
    }
+   return view('sewa.create', compact('tennants','penyewas'));
+}
 
     /**
      * Store a newly created resource in storage.
@@ -79,10 +80,9 @@ class sewaController extends Controller
       'tgl_sewa' => 'required',
       'id_penyewa' => 'required',
       'id_tennant' => 'required',
-      'biaya' => 'required',
       'tgl_awal_sewa' => 'required',
       'tgl_akhir_sewa' => 'required'
-    ]);
+  ]);
 
      $d1 = new DateTime($request->tgl_awal_sewa);
      $d2 = new DateTime($request->tgl_akhir_sewa);
@@ -94,20 +94,33 @@ class sewaController extends Controller
      if ($bulan<6) {
       return redirect()->route('sewa.index')
       ->with('fail','Data sewa Gagal Di tambahkan masa sewa kurang dari 6 bulan');
-    }else{
-     $sewa = sewa::create([
+  }else{
+    $get = DB::table('tennants')->where('id',$request->id_tennant)->first();
+    $jns_tagihan =  "Biaya Sewa Tennant";
+    $deskripsi = "Tagihan Pembayaran Tennant";
+
+
+    $sewa = sewa::create([
       'tgl_sewa' => $request->tgl_sewa,
       'id_penyewa' => $request->id_penyewa,
       'id_tennant' => $request->id_tennant,
-      'biaya' => $request->biaya,
+      'biaya' => $get->harga,
       'tgl_awal_sewa' => $request->tgl_awal_sewa,
       'tgl_akhir_sewa'     => $request->tgl_akhir_sewa
-    ]);
+  ]);
 
-     return redirect()->route('sewa.index')
-     ->with('success','Data sewa berhasil ditambahkan');
-   }
- }
+ $tagihan = DB::table('tagihans')->insert(
+       array('id_sewa' => $sewa->id,
+        'jenis_tagihan' => $jns_tagihan,
+        'tgl_tagihan' => date("Y-m-d"),
+        'deskripsi' => $deskripsi,
+        'nominal' => $get->harga,
+        'status' => '1')
+   );
+    return redirect()->route('sewa.index')
+    ->with('success','Data sewa berhasil ditambahkan');
+}
+}
 
     /**
      * Display the specified resource.
@@ -118,7 +131,7 @@ class sewaController extends Controller
     public function show(sewa $sewa)
     {
       return view('sewa.show',compact('sewa'));
-    }
+  }
 
     /**
      * Show the form for editing the specified resource.
@@ -131,7 +144,7 @@ class sewaController extends Controller
      $tennants = tennant::all();
      $users = penyewa::all();
      return view('sewa.edit', compact('sewa','tennants','users'));
-   }
+ }
 
     /**
      * Update the specified resource in storage.
@@ -151,7 +164,7 @@ class sewaController extends Controller
        'tgl_awal_sewa' => 'required',
        'tgl_akhir_sewa' => 'required',
        'status' => 'required',
-     ]);
+   ]);
       $sewa = sewa::where('id', $request->id)->update([
         'tgl_sewa' => $request->tgl_sewa,
         'id_penyewa' => $request->id_penyewa,
@@ -161,29 +174,32 @@ class sewaController extends Controller
         'tgl_akhir_sewa'     => $request->tgl_akhir_sewa,
         'status'     => $request->status,
 
-      ]);
+    ]);
+
+
+
       if ($request->status=='1') {
          $penyewa = penyewa::where('id', $request->id_penyewa)->update([
-        'status'     => '0'
-      ]);
+            'status'     => '0'
+        ]);
 
          $tennants = tennant::where('id', $request->id_tennant)->update([
-        'status'     => '0'
-      ]);
-      }
-         if ($request->status=='2') {
+            'status'     => '0'
+        ]);
+     }
+     if ($request->status=='2') {
          $penyewa = penyewa::where('id', $request->id_penyewa)->update([
-        'status'     => '1'
-      ]);
+            'status'     => '1'
+        ]);
 
          $tennants = tennant::where('id', $request->id_tennant)->update([
-        'status'     => '1'
-      ]);
-      }
+            'status'     => '1'
+        ]);
+     }
         /// setelah berhasil mengubah data
-      return redirect()->route('sewa.index')
-      ->with('success','Data berhasil di ubah');
-    }
+     return redirect()->route('sewa.index')
+     ->with('success','Data berhasil di ubah');
+ }
 
     /**
      * Remove the specified resource from storage.
@@ -198,5 +214,5 @@ class sewaController extends Controller
 
       return redirect()->route('sewa.index')
       ->with('success','Data berhasil dihapus');
-    }
   }
+}

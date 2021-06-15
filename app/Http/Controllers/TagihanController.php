@@ -17,10 +17,22 @@ class TagihanController extends Controller
      */
     public function index()
     {
-        $tagihan = tagihans::latest()->paginate(5);
-        return view('tagihan.index',compact('tagihan'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
+        // $tagihan = tagihans::latest()->paginate(5);
+        $level  = auth()->user()->level;
+        $id  = auth()->user()->id;
+        if ($level=='1') {
+         $tagihan = DB::table('tagihans')
+         ->get();  
+     }elseif ($level=='2') {
+         $tagihan = DB::table('tagihans')
+         ->join('sewas', 'sewas.id', '=', 'tagihans.id_sewa')
+         ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
+         ->where('penyewas.id_users', $id)
+         ->get();
+     }
+     return view('tagihan.index',compact('tagihan'))
+     ->with('i', (request()->input('page', 1) - 1) * 5);
+ }
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +55,7 @@ class TagihanController extends Controller
     public function store(Request $request)
     {
        // dd($request->all());
-     $request->validate([
+       $request->validate([
         'id_penyewa' => 'required',
         'jenis_tagihan' => 'required',
         'tgl_tagihan' => 'required',
@@ -53,13 +65,13 @@ class TagihanController extends Controller
         'id_users' => 'required', //id admin yg input pembayaran
         'status' => 'required',
     ]);
-     $bukti_tagihan = $request->bukti_tagihan;
-     $filename = date('YmHis') . Str::random(8) . "." . $bukti_tagihan->getClientOriginalExtension();
+       $bukti_tagihan = $request->bukti_tagihan;
+       $filename = date('YmHis') . Str::random(8) . "." . $bukti_tagihan->getClientOriginalExtension();
 //Kemudian di simpan di storage dengan nama yang ditentukan tadi
-     $bukti_tagihan->storeAs('public/images', $filename);
+       $bukti_tagihan->storeAs('public/images', $filename);
 //Nama ini juga disimpan ke kolom, misal ke artikel
 
-     $tagihan = tagihan::create([
+       $tagihan = tagihan::create([
         'id_penyewa' => $request->id_penyewa,
         'jenis_tagihan' => $request->jenis_tagihan,
         'tgl_tagihan' => $request->tgl_tagihan,
@@ -76,9 +88,9 @@ class TagihanController extends Controller
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
 
         /// redirect jika sukses menyimpan data
-     return redirect()->route('tagihan.index')
-     ->with('success','Data tagihan berhasil ditambahkan');
- }
+       return redirect()->route('tagihan.index')
+       ->with('success','Data tagihan berhasil ditambahkan');
+   }
 
     /**
      * Display the specified resource.
@@ -99,9 +111,9 @@ class TagihanController extends Controller
      */
     public function edit(tagihan $tagihan)
     {
-       $lantais = lantai::all();
-       return view('tagihan.edit',compact('tagihan','penyewa'));
-   }
+     $lantais = lantai::all();
+     return view('tagihan.edit',compact('tagihan','penyewa'));
+ }
 
     /**
      * Update the specified resource in storage.
@@ -133,14 +145,14 @@ class TagihanController extends Controller
         $filename2 = date('YmHis') . Str::random(8) . "." . $bukti_pembayaran->getClientOriginalExtension();
 //Kemudian di simpan di storage dengan nama yang ditentukan tadi
         if ($filename=='') {
-         $filename = date('YmHis') . Str::random(8) . "." . $bukti_tagihan->getClientOriginalExtension();
-     }
-     if ($filename2=='') {
-         $filename2 = date('YmHis') . Str::random(8) . "." . $bukti_pembayaran->getClientOriginalExtension();
-     }
-     $bukti_tagihan->storeAs('public/images', $filename);
-     $bukti_pembayaran->storeAs('public/images', $filename);
-     $tagihan = tagihan::where('id', $request->id)->update([
+           $filename = date('YmHis') . Str::random(8) . "." . $bukti_tagihan->getClientOriginalExtension();
+       }
+       if ($filename2=='') {
+           $filename2 = date('YmHis') . Str::random(8) . "." . $bukti_pembayaran->getClientOriginalExtension();
+       }
+       $bukti_tagihan->storeAs('public/images', $filename);
+       $bukti_pembayaran->storeAs('public/images', $filename);
+       $tagihan = tagihan::where('id', $request->id)->update([
         'id_penyewa' => $request->id_penyewa,
         'jenis_tagihan' => $request->jenis_tagihan,
         'tgl_tagihan' => $request->tgl_tagihan,
@@ -153,9 +165,9 @@ class TagihanController extends Controller
         'status' => $request->status,
     ]);
         /// setelah berhasil mengubah data
-     return redirect()->route('tagihan.index')
-     ->with('success','Data berhasil di ubah');
- }
+       return redirect()->route('tagihan.index')
+       ->with('success','Data berhasil di ubah');
+   }
 
     /**
      * Remove the specified resource from storage.
