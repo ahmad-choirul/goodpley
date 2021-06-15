@@ -51,19 +51,7 @@
                <textarea class="form-control" name="rincian_masalah"></textarea>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                <strong>Rincian Balasan:</strong>
-               <textarea class="form-control" name="rincian_balasan"></textarea>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                <strong>Status</strong>
-                <input type="text" name="status" class="form-control">
-            </div>
-        </div>
-       
+        
         <div class="col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
