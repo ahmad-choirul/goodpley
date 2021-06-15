@@ -76,6 +76,7 @@ class Sewa_AdvertiseController extends Controller
          $advertise = advertise::where('id', $request->id_advertise)->update([
         'status'     => '0'
       ]);
+         
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
 
