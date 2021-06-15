@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\sewa_advertise;
+use App\Models\advertise;
 use App\Models\lantai;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -45,7 +46,7 @@ class Sewa_AdvertiseController extends Controller
          ->where('sewas.id',$id)
          ->get();
      }
-     $advertise = DB::table('advertise')->get();
+     $advertise = DB::table('advertise')->where('advertise.status','1')->get();
      return view('sewa_advertise.create', compact('advertise','sewas'));
  }
 
@@ -72,6 +73,9 @@ class Sewa_AdvertiseController extends Controller
            'id_users' => $request->id_users
        ]);
 
+         $advertise = advertise::where('id', $request->id_advertise)->update([
+        'status'     => '0'
+      ]);
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
 

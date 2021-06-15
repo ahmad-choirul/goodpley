@@ -171,7 +171,7 @@ class sewaController extends Controller
         'status'     => '0'
       ]);
       }
-         if ($request->status=='0') {
+         if ($request->status=='2') {
          $penyewa = penyewa::where('id', $request->id_penyewa)->update([
         'status'     => '1'
       ]);

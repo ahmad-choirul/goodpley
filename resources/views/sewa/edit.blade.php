@@ -86,6 +86,7 @@
                         <option value="">Pilih Status</option>
                         <option value="0" <?php echo ( $sewa->status == '0') ? 'selected' : '' ?> >Belum Bayar</option>
                         <option value="1" <?php echo ( $sewa->status == '1') ? 'selected' : '' ?> >Sudah Disetujui</option>
+                        <option value="1" <?php echo ( $sewa->status == '2') ? 'selected' : '' ?> >Selesai</option>
                     </select>
                 </div>
                 <?php }else{ ?>
