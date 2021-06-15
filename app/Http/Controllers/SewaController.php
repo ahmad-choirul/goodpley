@@ -25,21 +25,22 @@ class sewaController extends Controller
       $level  = auth()->user()->level;
       $id  = auth()->user()->id;
       echo $id;
-      if ($level=='1') {
-       $sewa = DB::table('sewas')
-       ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
-       ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
-       ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
-       ->get();
-   }elseif ($level=='2') {
+     if ($level=='2') {
        $sewa = DB::table('sewas')
        ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
        ->where('id_users', $id)
        ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
        ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
        ->get();
+   }else{
+     $sewa = DB::table('sewas')
+       ->select('sewas.id','nama_tennant','nama_pemilik','id_penyewa','id_tennant','tgl_sewa','id_penyewa','id_tennant','biaya','tgl_awal_sewa','tgl_akhir_sewa','sewas.status')
+       ->join('tennants', 'tennants.id', '=', 'sewas.id_tennant')
+       ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
+       ->get();
    }
         // $sewa = sewa::latest()->paginate(5);
+   }
    return view('sewa.index',compact('sewa',$level))
    ->with('i', (request()->input('page', 1) - 1) * 5);
 }

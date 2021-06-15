@@ -20,19 +20,19 @@ class TagihanController extends Controller
         // $tagihan = tagihans::latest()->paginate(5);
         $level  = auth()->user()->level;
         $id  = auth()->user()->id;
-        if ($level=='1') {
-         $tagihan = DB::table('tagihans')
-         ->join('sewas', 'sewas.id', '=', 'tagihans.id_sewa')
-         ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
-         
-
-         ->get();  
-     }elseif ($level=='2') {
+       if ($level=='2') {
          $tagihan = DB::table('tagihans')
          ->join('sewas', 'sewas.id', '=', 'tagihans.id_sewa')
          ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
          ->where('penyewas.id_users', $id)
          ->get();
+     }else{
+        $tagihan = DB::table('tagihans')
+         ->join('sewas', 'sewas.id', '=', 'tagihans.id_sewa')
+         ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
+         
+
+         ->get();  
      }
      return view('tagihan.index',compact('tagihan'))
      ->with('i', (request()->input('page', 1) - 1) * 5);
