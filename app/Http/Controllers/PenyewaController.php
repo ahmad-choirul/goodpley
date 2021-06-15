@@ -20,13 +20,13 @@ class penyewaController extends Controller
     {
          $level  = auth()->user()->level;
         $id  = auth()->user()->id;
-           if ($level=='1') {
-           $penyewa = DB::table('penyewas')
-           ->get();  
-       }elseif ($level=='2') {
+           if ($level=='2') {
            $penyewa = DB::table('penyewas')
            ->where('id_users', $id)
            ->get();
+       }else{
+          $penyewa = DB::table('penyewas')
+           ->get();  
        }
         // $penyewa = penyewa::latest()->paginate(5);
         return view('penyewa.index',compact('penyewa'))
