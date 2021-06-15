@@ -46,6 +46,7 @@
       <div class="col-md-12">
         <div class="form-group">
             <strong>Rincian Masalah:</strong>
+            <input type="hidden" name="id" value="<?php echo $komplain->id ?>">
             <textarea class="form-control" name="rincian_masalah"><?php echo $komplain->rincian_masalah ?></textarea>  
         </div>
     </div>

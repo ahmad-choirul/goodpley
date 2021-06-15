@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\komplain;
-
+use Illuminate\Support\Facades\DB;
 class KomplainController extends Controller
 {
     /**
@@ -14,7 +14,13 @@ class KomplainController extends Controller
      */
     public function index()
     {
-        $komplain = komplain::latest()->paginate(5);
+        // $komplain = komplain::latest()->paginate(5);
+ $komplain = DB::table('komplain')
+        ->select('komplain.id','jenis','rincian_masalah','id_outsourcing','out.name as nama_out','use.name as nama_user','id_users','rincian_balasan','komplain.status')
+        ->join('users as out', 'komplain.id_outsourcing', '=', 'out.id')
+        ->join('users as use', 'komplain.id_users', '=', 'use.id')
+
+        ->get();
         return view('komplain.index',compact('komplain'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -95,6 +101,8 @@ class KomplainController extends Controller
      */
     public function update(Request $request,komplain $komplain)
     {
+               // dd($request->all());
+
         /// membuat validasi untuk title dan content wajib diisi
     $request->validate([
         'jenis' => 'required',
@@ -106,16 +114,19 @@ class KomplainController extends Controller
      
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
-     
+     if (auth()->user()->level=='2') {
      $komplain = komplain::where('id', $request->id)->update([
         'jenis' => $request->jenis,
         'rincian_masalah' => $request->rincian_masalah,
+    ]);
+     }else{
+     $komplain = komplain::where('id', $request->id)->update([
+        'jenis' => $request->jenis,
         'rincian_balasan' => $request->rincian_balasan,
-        'id_users' => $request->id_users,
-        'id_outsourcing' => $request->id_outsourcing,
+        'id_outsourcing' => auth()->user()->id,
         'status' => $request->status,
     ]);
-
+}
         /// setelah berhasil mengubah data
         return redirect()->route('komplain.index')
         ->with('success','Data berhasil di ubah');

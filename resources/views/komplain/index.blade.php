@@ -36,10 +36,16 @@
             <td class="text-center">{{ ++$i }}</td>
             <td>{{ $post->jenis }}</td>
             <td>{{ $post->rincian_masalah }}</td>
-             <td>{{ $post->id_penyewa }}</td>
-            <td>{{ $post->id_outsourcing}}</td>
+             <td>{{ $post->nama_user }}</td>
+            <td>{{ $post->nama_out}}</td>
             <td>{{ $post->rincian_balasan }}</td>
-            <td>{{ $post->status }}</td>
+            <td>   <?php 
+                if ($post->status=='0') {
+                 ?>
+                 <button class="btn btn-warning">Proses</button>
+             <?php } else{ ?>
+                <button class="btn btn-success">Sudah</button>
+            <?php } ?></td>
             <td class="text-center">
                 <form action="{{ route('komplain.destroy',$post->id) }}" method="POST">
  

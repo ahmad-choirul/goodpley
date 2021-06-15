@@ -32,8 +32,8 @@
         <div class="col-md-12">
             <div class="form-group">
               <strong>Jenis Komplain:</strong>
-              <select class="form-control m-bot15" name="id_lantai">
-                  
+              <select class="form-control m-bot15" name="jenis">
+
                 <option value=""><?php echo $komplain->rincian_masalah ?></option>
                 <option value="Air">Air</option>
                 <option value="Listrik">Listrik</option>
@@ -72,7 +72,7 @@
         <div class="col-md-12">
           <strong>Status:</strong>
           <textarea class="form-control" name="status" value="<?php echo $komplain->status?>" readonly=""></textarea>
-          
+
       </div>
       <div class="col-md-12 text-center">
           <button type="submit" class="btn btn-primary btn-block">Update</button>
