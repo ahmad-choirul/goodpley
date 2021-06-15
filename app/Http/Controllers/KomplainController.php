@@ -17,7 +17,7 @@ class KomplainController extends Controller
         // $komplain = komplain::latest()->paginate(5);
  $komplain = DB::table('komplain')
         ->select('komplain.id','jenis','rincian_masalah','id_outsourcing','out.name as nama_out','use.name as nama_user','id_users','rincian_balasan','komplain.status')
-        ->join('users as out', 'komplain.id_outsourcing', '=', 'out.id')
+        ->leftjoin('users as out', 'komplain.id_outsourcing', '=', 'out.id')
         ->join('users as use', 'komplain.id_users', '=', 'use.id')
 
         ->get();
@@ -83,8 +83,8 @@ class KomplainController extends Controller
      */
     public function edit(komplain $komplain)
     {
-      $id  = auth()->user()->id;
-      if ($id=='2') {
+      $level  = auth()->user()->level;
+      if ($level=='2') {
       return view('komplain.edit',compact('komplain'));
       }else{
       return view('komplain.edit_out',compact('komplain'));
@@ -103,14 +103,6 @@ class KomplainController extends Controller
     {
                // dd($request->all());
 
-        /// membuat validasi untuk title dan content wajib diisi
-    $request->validate([
-        'jenis' => 'required',
-        'rincian_masalah' => 'required',
-        'rincian_balasan' => 'required',
-        'status' => 'required',
-
-    ]);
      
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama

@@ -34,7 +34,7 @@
               <strong>Jenis Komplain:</strong>
               <select class="form-control m-bot15" name="jenis">
 
-                <option value=""><?php echo $komplain->rincian_masalah ?></option>
+                <option value="<?php echo $komplain->jenis ?>"><?php echo $komplain->jenis ?></option>
                 <option value="Air">Air</option>
                 <option value="Listrik">Listrik</option>
                 <option value="saluran air">Saluran Air</option>
@@ -47,7 +47,8 @@
     <div class="col-md-12">
         <div class="form-group">
             <strong>Rincian Masalah:</strong>
-            <textarea class="form-control" name="rincian_masalah" value="<?php echo $komplain->rincian_masalah ?>"></textarea>
+            <input type="hidden" name="id" value="<?php echo $komplain->id ?>">
+            <textarea class="form-control" name="rincian_masalah"><?php echo $komplain->rincian_masalah ?></textarea>
         </div>
     </div>
       <!--   <div class="col-md-6">
