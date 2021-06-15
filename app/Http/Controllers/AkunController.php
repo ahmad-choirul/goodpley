@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\akun;
 use App\Models\kategori;
 use App\Models\lantai;
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -33,7 +35,7 @@ class akunController extends Controller
     {
         // $kategoris = kategori::all();
         // $lantais = lantai::all();
-        return view('akun.create', compact());
+        return view('akun.create');
     }
 
     /**
@@ -46,17 +48,25 @@ class akunController extends Controller
     {
        // dd($request->all());
        $request->validate([
-        'name' => 'required',
+        'username' => 'required',
         'email' => 'required',
         'level' => 'required',
         
     ]);
 
-       $akun = akun::create([
-        'nama' => $request->nama,
-        'email' => $request->email,
+    //    $akun = akun::create([
+    //     'name' => $request->username,
+    //     'email' => $request->email,
+    //     'password' => Hash::make($request->password),
+    //     'level' => $request->level,
+    // ]);
+
+        $tagihan = DB::table('users')->insert(
+       array('name' => $request->email,
+        'email' =>  $request->email,
         'level' => $request->level,
-    ]);
+        'password' => Hash::make($request->password))
+   );
        // dd($akun);
 
         /// insert setiap request dari form ke dalam database via model

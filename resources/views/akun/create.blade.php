@@ -25,13 +25,13 @@
 
 <form action="{{ route('akun.store') }}" method="POST" enctype="multipart/form-data" class="form-control">
     @csrf
-     <span class="btn btn-info " style="border-radius: 6px;max-height: 30px; font-size: 12px;" >IDENTITAS PEMILIK USAHA</span>
+     <span class="btn btn-info " style="border-radius: 6px;max-height: 30px; font-size: 12px;" >IDENTITAS PEMILIK AKUN</span>
    
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <strong>Username</strong>
-                <input type="text" name="email" class="form-control" placeholder="nama pemilik">
+                <input type="text" name="username" class="form-control" placeholder="nama pemilik">
             </div>
         </div>
         <div class="col-md-5">
@@ -43,12 +43,12 @@
         <div class="col-md-3">
             <div class="form-group">
                 <strong>level</strong>
-                <select class="form-control select2">
+                <select class="form-control select2" name="level">
                     <option>Pilih level</option>
-                    <option>akun</option>
-                    <option>Marketing</option>
-                    <option>Administrasi</option>
-                    <option>Outsourcing</option>
+                    <option value="2">Penyewa</option>
+                    <option value="3">Marketing</option>
+                    <option value="4">Administrasi</option>
+                    <option value="5">Outsourcing</option>
                 </select>
             </div>
         </div>

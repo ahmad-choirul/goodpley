@@ -36,7 +36,7 @@
         @foreach ($tagihan as $post)
         <tr>
             <td class="text-center">{{ ++$i }}</td>
-            <td>{{ $post->id_sewa }}</td>
+            <td>{{ $post->nama_pemilik }}</td>
             <td>{{ $post->jenis_tagihan}}</td>
             <td>{{ $post->tgl_tagihan}}</td>
             <td>{{ $post->deskripsi }}</td>

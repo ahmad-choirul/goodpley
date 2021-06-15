@@ -22,6 +22,10 @@ class TagihanController extends Controller
         $id  = auth()->user()->id;
         if ($level=='1') {
          $tagihan = DB::table('tagihans')
+         ->join('sewas', 'sewas.id', '=', 'tagihans.id_sewa')
+         ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
+         
+
          ->get();  
      }elseif ($level=='2') {
          $tagihan = DB::table('tagihans')

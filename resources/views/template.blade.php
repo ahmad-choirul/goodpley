@@ -68,6 +68,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                 <?php
                  $level = auth()->user()->level;
                  if ($level=='1'): ?>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('akun.index') }}">Data Akun</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('lantai.index') }}">Data Lantai</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('kategori.index') }}">Kategori</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('tennant.index') }}">Outlet</a></li>
