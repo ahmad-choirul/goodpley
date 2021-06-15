@@ -6,6 +6,7 @@
         <div></div>
     </div>
     <div class="row mt-5 mb-5">
+        <br>
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
                 <h2> Show Post</h2>
