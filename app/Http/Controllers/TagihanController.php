@@ -115,7 +115,7 @@ class TagihanController extends Controller
      */
     public function edit(tagihan $tagihan)
     {
-     $lantais = lantai::all();
+     $penyewa = penyewa::all();
      return view('tagihan.edit',compact('tagihan','penyewa'));
  }
 

@@ -6,11 +6,18 @@
         <br>
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Daftar Nama Outlet</h2>
+                <h2>Daftar Tagihan</h2>
             </div>
+            <?php 
+$level  = auth()->user()->level;
+        $id  = auth()->user()->id;
+             ?>
+             <?php if ($level!='2'): ?>
             <div class="float-right">
                 <a class="btn btn-success" href="{{ route('tagihan.create') }}"> Tambah Tagihan</a>
-            </div>
+            </div>     
+             <?php endif ?>
+            
         </div>
     </div>
  
@@ -46,7 +53,13 @@
             <td><img src=" {{ asset('storage/images/'.$post->bukti_tagihan) }}" width="100px"> </td>
             <td><img src=" {{ asset('storage/images/'.$post->bukti_pembayaran) }}" width="100px"> </td>
             <td>{{ $post->id_users }}</td>
-            <td>{{ $post->status }}</td>
+            <td>   <?php 
+                if ($post->status=='0') {
+                 ?>
+                 <button class="btn btn-warning">Belum</button>
+             <?php } else{ ?>
+                <button class="btn btn-success">Sudah</button>
+            <?php } ?></td>
             <td class="text-center">
                 <form action="{{ route('tagihan.destroy',$post->id) }}" method="POST">
  
