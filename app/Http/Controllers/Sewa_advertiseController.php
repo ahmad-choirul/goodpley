@@ -76,7 +76,17 @@ class Sewa_AdvertiseController extends Controller
          $advertise = advertise::where('id', $request->id_advertise)->update([
         'status'     => '0'
       ]);
-         
+    $get = DB::table('advertise')->where('id',$request->id_advertise)->first();
+$jns_tagihan =  "Biaya Sewa Iklan";
+    $deskripsi = "Tagihan Sewa Iklan";
+          $tagihan = DB::table('tagihans')->insert(
+       array('id_sewa' => $request->id_sewa,
+        'jenis_tagihan' => $jns_tagihan,
+        'tgl_tagihan' => date("Y-m-d"),
+        'deskripsi' => $deskripsi,
+        'nominal' => $get->harga,
+        'status' => '1')
+   );
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
 
