@@ -40,7 +40,7 @@ class sewaController extends Controller
        ->get();
    }
         // $sewa = sewa::latest()->paginate(5);
-   }
+   
    return view('sewa.index',compact('sewa',$level))
    ->with('i', (request()->input('page', 1) - 1) * 5);
 }
