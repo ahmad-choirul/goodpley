@@ -5,10 +5,10 @@
         <br>
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Daftar Nama Outlet</h2>
+                <h2>Daftar Nama Plaza</h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-success" href="{{ route('tennant.create') }}"> Tambah Outlet</a>
+                <a class="btn btn-success" href="{{ route('tennant.create') }}"> Tambah Plaza</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
     <table class="table table-bordered">
         <tr>
             <th width="20px" class="text-center">No</th>
-            <th>Nama Outlet</th>
+            <th>Nama Plaza</th>
             <th>Lantai</th>
             <th>Kategori</th>
             <th>Lebar</th>

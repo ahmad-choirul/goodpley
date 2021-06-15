@@ -55,10 +55,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <h1><a href="index.html"><img src="images/logo3.png"></a></h1>
         </div>
         <div class="col-md-6 header-middle">
-            
+
         </div>
         <div class="col-md-3 header-right footer-bottom">
-         
+
         </div>
         <div class="clearfix"></div>
     </div>
@@ -84,7 +84,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
               <ul class="nav navbar-nav menu__list">
                 <li class="active menu__item menu__item--current"><a class="menu__link" href="">Home <span class="sr-only">(current)</span></a></li>
                 <?php 
-                
+
                 $id  = auth()->user();
                 ?>
                 <?php if ($id==''): ?>
@@ -101,7 +101,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                 </a>
             </form>
         <?php endif ?>
-        
+
     </ul>
 </div>
 </div>
@@ -113,11 +113,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <h3> <div class="total">
                 <i class="fa fa-users" aria-hidden="true">GOOD</i>
             </div>
-            
+
         </h3>
     </a>
     <p><a href="javascript:;" class="simpleCart_empty">PLEY</a></p>
-    
+
 </div>  
 </div>
 <div class="clearfix"></div>
@@ -178,7 +178,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <div class="col-md-4 new-gd-left">
                 <img src="images/wed1.jpg" alt=" " />
                 <div class="wed-brand simpleCart_shelfItem">
-                  
+
                 </div>
             </div>
             <div class="col-md-4 new-gd-middle">
@@ -195,7 +195,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <div class="col-md-4 new-gd-left">
                 <img src="images/wed2.jpg" alt=" " />
                 <div class="wed-brandtwo simpleCart_shelfItem">
-                 
+
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -211,7 +211,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     <div class="container">
 
         <div class="row justify-content-center py-4">
-            <h2 class="text-center"><strong>Cari Outlet</strong></h2>
+            <h2 class="text-center"><strong>Cari Plaza</strong></h2>
         </div>
         <br>
         <div class="row justify-content-center">
@@ -220,7 +220,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 
                     <div class="row">
-                      
+
                         <div class="form-group col-md-2">
                             <label>Kategori </label>
                             <select class="form-control m-bot15" name="id_kategori">
@@ -375,7 +375,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             </div>
         </div> -->
         <div class="clearfix"></div>
-        
+
 
     </div>
 </div>

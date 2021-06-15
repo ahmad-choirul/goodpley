@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Outlet:</strong>
+                <strong>Nama Plaza:</strong>
                 <input type="text" name="nama_tennant" value="<?php echo $tennant->nama_tennant ?>" class="form-control" placeholder="Nama Tennant">
             </div>
         </div>

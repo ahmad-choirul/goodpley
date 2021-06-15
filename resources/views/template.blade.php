@@ -31,7 +31,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script src="{{ URL::asset('js/jquery.easing.min.js') }}"></script>
 </head>
 <body>
-     <div class="header-bot">
+   <div class="header-bot">
     <div class="container">
         <div class="col-md-3 header-left">
             <h1><a href="index.html"><img src="images/logo3.png"></a></h1>
@@ -40,14 +40,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
         </div>
         <div class="col-md-3 header-right footer-bottom">
-                <?php 
-                    echo "Today is " . date("Y/m/d")." ". date("h:i:sa");
-                 ?>
+            <?php 
+            echo "Today is " . date("Y/m/d")." ". date("h:i:sa");
+            ?>
         </div>
         <div class="clearfix"></div>
     </div>
 </div>
- <div class="ban-top">
+<div class="ban-top">
     <div class="container">
         <div class="top_nav_left">
             <nav class="navbar navbar-default">
@@ -64,44 +64,58 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav menu__list">
-          <!--       <li class="active menu__item menu__item--current"><a class="menu__link" href="">Home <span class="sr-only">(current)</span></a></li> -->
-                <?php
-                 $level = auth()->user()->level;
-                 if ($level=='1'): ?>
+                  <!--       <li class="active menu__item menu__item--current"><a class="menu__link" href="">Home <span class="sr-only">(current)</span></a></li> -->
+                  <?php
+                  $level = auth()->user()->level;
+                  if ($level=='1'): ?>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('akun.index') }}">Data Akun</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('lantai.index') }}">Data Lantai</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('kategori.index') }}">Kategori</a></li>
-                    <li class=" menu__item"><a class="menu__link" href="{{ route('tennant.index') }}">Outlet</a></li>
-                    <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Usaha</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('tennant.index') }}">Plaza</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Penyewa/Usaha</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('advertise.index') }}">Advertise</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa</a></li>
-                      <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
 
-                    <?php elseif($level=='2'): ?>
-                        <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Usaha</a></li>
+                    <?php elseif($level=='2'): ?><!--  penyewa -->
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Penyewa/Usaha</a></li>
 
-                        <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa Tempat</a></li>
-                        <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
-                        <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Marcom</a></li>
-                         <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa Tempat</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Marcom</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
 
-                    <?php endif ?>
+                <?php endif ?>
+                <?php elseif($level=='3'): ?> <!--  marketing -->
+                <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Penyewa/Usaha</a>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa</a></li>
+                    <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
+                <?php endif ?>
+                <?php elseif($level=='4'): ?> <!--  administrasi -->
+                <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
+                <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa</a></li>
+            <?php endif ?>
+            <?php elseif($level=='5'): ?> <!--  outsourcing -->
+            <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
 
-                    
-
-         
-                    <li class=" menu__item"><a class="menu__link" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
-
-             
+        <?php endif ?>
 
 
 
-                  <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                      <li class=" menu__item"><a class="menu__link" href="{{ route('logout') }}"  onclick="event.preventDefault();
-                    this.closest('form').submit();" > Logout</a></
+
+
+        <li class=" menu__item"><a class="menu__link" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
+
+
+
+
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <li class=" menu__item"><a class="menu__link" href="{{ route('logout') }}"  onclick="event.preventDefault();
+            this.closest('form').submit();" > Logout</a></
 <!-- 
                    <li > <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -109,16 +123,16 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
               
                 </a></li> -->
             </form>
-     
-        
-    </ul>
-</div>
+
+
+        </ul>
+    </div>
 </div>
 </nav>  
 </div>
 <div class="top_nav_right">
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
 </div>
 </div>
 </div>
