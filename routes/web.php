@@ -15,27 +15,49 @@ use Inertia\Inertia;
 |
 */
 use App\Http\Controllers\LantaiController;
+
 Route::resource('lantai', LantaiController::class);
+
 use App\Http\Controllers\kategoriController;
+
 Route::resource('kategori', kategoriController::class);
+
 use App\Http\Controllers\tennantController;
+
 Route::resource('tennant', TennantController::class);
+
 use App\Http\Controllers\PenyewaController;
+
 Route::resource('penyewa', PenyewaController::class);
+
 use App\Http\Controllers\AkunController;
+
 Route::resource('akun', AkunController::class);
+
 use App\Http\Controllers\AdvertiseController;
+
 Route::resource('advertise', AdvertiseController::class);
+
 use App\Http\Controllers\KeluhanController;
+
 Route::resource('keluhan', KeluhanController::class);
+
 use App\Http\Controllers\TagihanController;
+
+Route::get('tagihan/form-bayar/{tagihan}', [TagihanController::class, 'formBayar'])->name('tagihan.form-bayar');
+Route::put('tagihan/bayar/{tagihan}', [TagihanController::class, 'bayar'])->name('tagihan.bayar');
 Route::resource('tagihan', TagihanController::class);
+
 use App\Http\Controllers\Sewa_AdvertiseController;
+
 Route::resource('sewa_advertise', Sewa_AdvertiseController::class);
+
 use App\Http\Controllers\KomplainController;
+
 Route::resource('komplain', KomplainController::class);
 
 use App\Http\Controllers\SewaController;
+
 Route::resource('sewa', SewaController::class);
 Route::get('search', [TennantController::class, 'cari']);
 Route::get('keluhan', [PenyewaController::class, 'keluhan']);

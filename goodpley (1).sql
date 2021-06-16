@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Jun 2021 pada 03.20
+-- Waktu pembuatan: 16 Jun 2021 pada 03.03
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -37,15 +37,16 @@ CREATE TABLE `advertise` (
   `harga` varchar(11) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `advertise`
 --
 
-INSERT INTO `advertise` (`id`, `nama_advertise`, `lebar`, `panjang`, `id_lantai`, `jenis`, `harga`, `gambar`, `updated_at`, `created_at`) VALUES
-(3, 'ESKALATOR NAIK', 2, 2, 1, 'Eskalator', '100000', '202106112227uZSIyJj7.PNG', '2021-06-09 04:22:27', '2021-06-09 04:22:27');
+INSERT INTO `advertise` (`id`, `nama_advertise`, `lebar`, `panjang`, `id_lantai`, `jenis`, `harga`, `gambar`, `updated_at`, `created_at`, `status`) VALUES
+(3, 'ESKALATOR NAIK', 2, 2, 1, 'Eskalator', '100000', '202106112227uZSIyJj7.PNG', '2021-06-14 13:39:07', '2021-06-09 04:22:27', 0);
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,32 @@ CREATE TABLE `kategoris` (
 
 INSERT INTO `kategoris` (`id`, `nama_kategori`, `created_at`, `updated_at`) VALUES
 (1, 'outdoor', '2021-05-26 21:02:05', '2021-05-26 21:02:05'),
-(2, 'indoor', '2021-05-26 21:02:13', '2021-05-30 21:45:56');
+(2, 'indoor outlet', '2021-05-26 21:02:13', '2021-06-15 09:57:33');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `komplain`
+--
+
+CREATE TABLE `komplain` (
+  `id` int(11) NOT NULL,
+  `jenis` varchar(100) NOT NULL,
+  `rincian_masalah` text NOT NULL,
+  `id_outsourcing` int(11) DEFAULT NULL,
+  `id_users` int(11) NOT NULL,
+  `rincian_balasan` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `komplain`
+--
+
+INSERT INTO `komplain` (`id`, `jenis`, `rincian_masalah`, `id_outsourcing`, `id_users`, `rincian_balasan`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'corong udara', 'assap di tenant babeq tidak tersedotaa', 5, 3, 'akan dilakukan perbaikan nnti sore', 1, '2021-06-15 10:39:21', '2021-06-15 15:45:11');
 
 -- --------------------------------------------------------
 
@@ -141,16 +167,16 @@ CREATE TABLE `penyewas` (
   `alamat_usaha` varchar(100) NOT NULL,
   `no_siup` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `penyewas`
 --
 
-INSERT INTO `penyewas` (`id`, `id_users`, `nama_pemilik`, `alamat_pemilik`, `hp`, `ktp`, `nama_usaha`, `alamat_usaha`, `no_siup`, `created_at`, `updated_at`) VALUES
-(1, 3, 'usaha a', 'HA', '12', '1216575765876589', '111', 'Y87', '9878', '2021-06-09 15:12:54', '2021-06-09 22:26:01'),
-(2, 4, 'Rosida', 'banyuwangi', '08211117771', '3509045504440001', 'KOREAN FUSHION', 'Banyuwangi', '0', '2021-06-09 16:37:52', '2021-06-09 16:37:52');
+INSERT INTO `penyewas` (`id`, `id_users`, `nama_pemilik`, `alamat_pemilik`, `hp`, `ktp`, `nama_usaha`, `alamat_usaha`, `no_siup`, `created_at`, `updated_at`, `status`) VALUES
+(1, 3, 'usaha a', 'HA', '12', '1216575765876589', '111', 'Y87', '9878', '2021-06-09 15:12:54', '2021-06-15 15:19:47', 0);
 
 -- --------------------------------------------------------
 
@@ -190,9 +216,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('gVYxr9zDVl7ORAgJ4EYhKRyDirftiVOh5WDrQ4P4', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiOGZMVk9BNmgxQjlIcTVHU1dGNXV4SEFGTDhQVzhnN3hlUHpYZFRScCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90YWdpaGFuIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJEpRM25Yb2JjMjQ4UGxQRWJhUVV6NE95Y1F2aTI3SGRnckhLV25RbXRSU1VraTlXWXA4T0F1Ijt9', 1623280837),
-('irFJWc6HXGsMP4FoH4IZ9dP564OJzwTrSHltLc2m', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRkhFVXk2TGRwTmw4SDVBbnlQWEJBSU83UW1KY1NPblVkWU1EWlVENSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjQ7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCR0M1gxdlY4cC5EQVE0c3ROeG1JcUNPeDRBVWFqeWhUWkpnQzAzYk5EVS9PUFNNQ29peGdiLiI7fQ==', 1623287803),
-('u52h0ZIJgCc8u7mrol0k5SsrYwv25TAvR3znv86K', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:88.0) Gecko/20100101 Firefox/88.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiT0FWOTdqb0VNbHA4R0xxZFdON3RldWd3dXdrM2Y2UDZ1dm42bWg0ZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1623295118);
+('8TtbRAA1uDgXbiQOz0go3p7liRxzJVe6eq7sjRPM', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQXo0Z0V4Mzg1MjlhZ0J3RlZrRm9sdHFhRkk1QVVPSGJhUzRMVERRMCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90YWdpaGFuIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MztzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDU3THpwVXRYLnFLcGFKTE1JTTVVUS41dmo1blE2THhFTlhRaXdvRmZqTGFhcnM5SS5jRmNXIjt9', 1623805283),
+('AiSa6UQqLIJ0YzQWBlV5cFTvk5i2qcjLf76M11e4', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNUtHQUNxMzE2THZIN3NwTmtrWjR1bEFKU2hyeWJEaEp6bFJMUkVDUCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90YWdpaGFuL2NyZWF0ZSI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRKUTNuWG9iYzI0OFBsUEViYVFVejRPeWNRdmkyN0hkZ3JIS1duUW10UlNVa2k5V1lwOE9BdSI7fQ==', 1623800472),
+('P8g1LU8BKE0KVboCa1dGwbjhc3DT8oLYtEyPTZTv', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoia1Mxa2xvNEZFSGVSSGc3dmpWdWNxTUgyV1pwU2JBa1g1VEh3RmZyZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90YWdpaGFuLzEvZWRpdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRKUTNuWG9iYzI0OFBsUEViYVFVejRPeWNRdmkyN0hkZ3JIS1duUW10UlNVa2k5V1lwOE9BdSI7fQ==', 1623800437);
 
 -- --------------------------------------------------------
 
@@ -218,10 +244,8 @@ CREATE TABLE `sewas` (
 --
 
 INSERT INTO `sewas` (`id`, `tgl_sewa`, `id_penyewa`, `id_tennant`, `biaya`, `tgl_awal_sewa`, `tgl_akhir_sewa`, `created_at`, `updated_at`, `status`) VALUES
-(2, '2021-06-10', 3, 3, '10000', '2021-06-10', '2021-06-30', '2021-06-08 13:54:27', '2021-06-09 23:13:04', 0),
-(3, '2021-06-17', 1, 2, '1000', '2021-06-10', '2021-06-18', '2021-06-09 04:43:58', '2021-06-09 04:43:58', 0),
-(4, '2021-06-10', 2, 3, '1500000', '2021-06-05', '2021-12-05', '2021-06-09 16:51:01', '2021-06-09 16:51:01', 0),
-(5, '2021-06-10', 2, 4, '1500000', '2021-06-05', '2021-12-05', '2021-06-09 16:53:31', '2021-06-09 16:53:31', 0);
+(1, '2021-06-01', 1, 1, '35000', '2021-02-01', '2021-11-30', '2021-06-15 00:10:52', '2021-06-15 15:19:47', 1),
+(2, '2021-06-01', 1, 1, '35000', '2021-02-01', '2021-11-30', '2021-06-15 00:11:28', '2021-06-15 00:11:28', 0);
 
 -- --------------------------------------------------------
 
@@ -237,15 +261,16 @@ CREATE TABLE `sewa_advertise` (
   `lama_sewa` int(11) NOT NULL,
   `id_users` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `sewa_advertise`
 --
 
-INSERT INTO `sewa_advertise` (`id`, `id_sewa`, `id_advertise`, `tgl_mulai_sewa`, `lama_sewa`, `id_users`, `created_at`, `updated_at`) VALUES
-(2, 2, 3, '2021-06-23', 222, 0, '2021-06-09 14:15:18', '2021-06-09 14:15:18');
+INSERT INTO `sewa_advertise` (`id`, `id_sewa`, `id_advertise`, `tgl_mulai_sewa`, `lama_sewa`, `id_users`, `created_at`, `updated_at`, `status`) VALUES
+(5, 3, 3, '2021-06-15', 6, 0, '2021-06-14 13:39:07', '2021-06-14 13:39:07', 0);
 
 -- --------------------------------------------------------
 
@@ -268,6 +293,15 @@ CREATE TABLE `tagihans` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tagihans`
+--
+
+INSERT INTO `tagihans` (`id`, `id_sewa`, `jenis_tagihan`, `tgl_tagihan`, `deskripsi`, `nominal`, `bukti_tagihan`, `bukti_pembayaran`, `tgl_pembayaran`, `id_users`, `status`, `created_at`, `updated_at`) VALUES
+(3, 1, 'PLN', '2021-06-17', 'wokwokwokwok', '21', '202106235609gYIli25w.png', '202106010044O4cXZFNL.jpg', '2021-06-16', 1, 1, '2021-06-15', '2021-06-16'),
+(4, 1, 'PDAM', '2021-06-19', 'wokwokwokowkwo', '43', '202106002334xOmN25mg.png', '202106002334fHVMSfO6.png', '2021-06-16', 1, 1, '2021-06-16', '2021-06-16'),
+(5, 1, 'PLN', '2021-06-15', 'kwkwk', '12000', '202106004809TxrasAZw.png', NULL, NULL, 6, 0, '2021-06-16', '2021-06-16');
 
 -- --------------------------------------------------------
 
@@ -294,8 +328,8 @@ CREATE TABLE `tennants` (
 --
 
 INSERT INTO `tennants` (`id`, `nama_tennant`, `id_lantai`, `id_kategori`, `lebar`, `panjang`, `gambar`, `harga`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'tennatn a', 2, 2, 1, 1, '202106033621qH5hJcHj.jpg', '35000', 1, '2021-05-26 21:02:51', '2021-06-02 17:40:56'),
-(2, 'tennatn b', 1, 1, 5, 4, '202106033644h7vlPXsh.png', '50000', 1, '2021-05-26 21:05:31', '2021-06-02 17:41:14'),
+(1, 'tennatn a', 2, 2, 1, 1, '202106033621qH5hJcHj.jpg', '35000', 0, '2021-05-26 21:02:51', '2021-06-15 15:19:47'),
+(2, 'tennatn b', 1, 1, 5, 4, '202106033644h7vlPXsh.png', '50000', 1, '2021-05-26 21:05:31', '2021-06-14 13:26:26'),
 (3, 'J KITCHEN A', 2, 1, 2, 3, '2021060336553rYxGuDx.jpg', '20000', 1, '2021-05-31 00:56:38', '2021-06-02 19:33:55'),
 (4, 'aa', 1, 1, 1, 1, '202105081918fKx9u4m8.jpg', '1', 1, '2021-05-31 01:19:18', '2021-06-02 19:34:21');
 
@@ -309,13 +343,6 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_pemilik` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alamat_pemilik` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hp` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ktp` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nama_usaha` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alamat_usaha` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `no_siup` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `two_factor_secret` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -332,10 +359,12 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `nama_pemilik`, `alamat_pemilik`, `hp`, `ktp`, `nama_usaha`, `alamat_usaha`, `no_siup`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `level`, `created_at`, `updated_at`) VALUES
-(1, 'adm', 'admin@demo.com', 'a', 'a', 'a', 'a', 'a', 'a', 'a', NULL, '$2y$10$JQ3nXobc248PlPEbaQUz4OycQvi27HdgrHKWnQmtRSUki9WYp8OAu', NULL, NULL, NULL, NULL, NULL, 1, '2021-06-03 15:01:27', '2021-06-08 05:31:51'),
-(3, 'haidar', 'haidar@gmail.com', 'pemilik', 'Jember', '08211117771', '4555666677777777', 'test usaha', 'jember', 'id124', NULL, '$2y$10$57LzpUtX.qKpaJLMIM5UQ.5vj5nQ6LxENXQiwoFfjLaars9I.cFcW', NULL, NULL, NULL, NULL, NULL, 2, '2021-06-08 07:29:49', '2021-06-08 07:33:02'),
-(4, 'rosi', 'rosida@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$t3X1vV8p.DAQ4stNxmIqCOx4AUajyhTZJgC03bNDU/OPSMCoixgb.', NULL, NULL, NULL, NULL, NULL, 2, '2021-06-09 16:26:29', '2021-06-09 16:26:29');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `level`, `created_at`, `updated_at`) VALUES
+(1, 'adm', 'admin@demo.com', NULL, '$2y$10$JQ3nXobc248PlPEbaQUz4OycQvi27HdgrHKWnQmtRSUki9WYp8OAu', NULL, NULL, 'edFIQhmNpB1Lh8PXE50ahKM1yHQpbBkO3VU4KUdpMwVeYxanXNxaVulxeuSX', NULL, NULL, 1, '2021-06-03 15:01:27', '2021-06-08 05:31:51'),
+(3, 'haidar', 'haidar@gmail.com', NULL, '$2y$10$57LzpUtX.qKpaJLMIM5UQ.5vj5nQ6LxENXQiwoFfjLaars9I.cFcW', NULL, NULL, NULL, NULL, NULL, 2, '2021-06-08 07:29:49', '2021-06-08 07:33:02'),
+(4, 'marketing@gmail.com', 'marketing@gmail.com', NULL, '$2y$10$CKF.R81r.8iFypGBVqAqz.AY3q8Wzf9illabOTZHKW90Ckk8CJFfa', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL),
+(5, 'outsourcing@gmail.com', 'outsourcing@gmail.com', NULL, '$2y$10$y2DS6WuqCFkECpurtrzsKu9u2loY8Fxi1mBzkUiemWr8.1fQ90fXa', NULL, NULL, NULL, NULL, NULL, 5, NULL, '2021-06-15 09:53:47'),
+(6, 'administrasi@gmail.com', 'administrasi@gmail.com', NULL, '$2y$10$tTPQQYkIicVr2hMiVHnJeeqGV42YiocqUOb486IAOlZ5iEKbGB9b.', NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -351,6 +380,12 @@ ALTER TABLE `advertise`
 -- Indeks untuk tabel `kategoris`
 --
 ALTER TABLE `kategoris`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `komplain`
+--
+ALTER TABLE `komplain`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -441,6 +476,12 @@ ALTER TABLE `kategoris`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT untuk tabel `komplain`
+--
+ALTER TABLE `komplain`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `lantai`
 --
 ALTER TABLE `lantai`
@@ -456,7 +497,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `penyewas`
 --
 ALTER TABLE `penyewas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -468,19 +509,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `sewas`
 --
 ALTER TABLE `sewas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `sewa_advertise`
 --
 ALTER TABLE `sewa_advertise`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tagihans`
 --
 ALTER TABLE `tagihans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tennants`
@@ -492,7 +533,7 @@ ALTER TABLE `tennants`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

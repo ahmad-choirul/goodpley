@@ -20,7 +20,8 @@
     </div>
     @endif
  
-    <table class="table table-bordered">
+<div class="table" style="color: black"> 
+    <table class="table-responsive" style="color: black;white-space: nowrap;">
         <tr>
             <th width="20px" class="text-center">No</th>
             <th>Jenis Komplain</th>
@@ -62,6 +63,7 @@
         </tr>
         @endforeach
     </table>
+</div>
  
  
 @endsection

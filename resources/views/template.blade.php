@@ -5,7 +5,7 @@
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Smart Shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+    <meta name="keywords" content="Smart Shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
     Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -40,7 +40,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
         </div>
         <div class="col-md-3 header-right footer-bottom">
-            <?php 
+            <?php
             echo "Today is " . date("Y/m/d")." ". date("h:i:sa");
             ?>
         </div>
@@ -87,16 +87,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Marcom</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
 
-                <?php endif ?>
                 <?php elseif($level=='3'): ?> <!--  marketing -->
                 <li class=" menu__item"><a class="menu__link" href="{{ route('penyewa.index') }}">List Penyewa/Usaha</a>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa</a></li>
                     <li class=" menu__item"><a class="menu__link" href="{{ route('sewa_advertise.index') }}">Sewa Advertise</a></li>
-                <?php endif ?>
+
                 <?php elseif($level=='4'): ?> <!--  administrasi -->
-                <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
                 <li class=" menu__item"><a class="menu__link" href="{{ route('sewa.index') }}">Sewa</a></li>
-            <?php endif ?>
+                <li class=" menu__item"><a class="menu__link" href="{{ route('tagihan.index') }}">Tagihan</a></li>
+
             <?php elseif($level=='5'): ?> <!--  outsourcing -->
             <li class=" menu__item"><a class="menu__link" href="{{ route('komplain.index') }}">Komplain</a></li>
 
@@ -116,11 +115,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @csrf
             <li class=" menu__item"><a class="menu__link" href="{{ route('logout') }}"  onclick="event.preventDefault();
             this.closest('form').submit();" > Logout</a></
-<!-- 
+<!--
                    <li > <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     this.closest('form').submit();" class=" menu__item">
-              
+
                 </a></li> -->
             </form>
 
@@ -128,7 +127,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         </ul>
     </div>
 </div>
-</nav>  
+</nav>
 </div>
 <div class="top_nav_right">
 
@@ -138,7 +137,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </div>
 </div>
 <div class="container">
-    @yield('content');
+    @yield('content')
 </div>
 
 
