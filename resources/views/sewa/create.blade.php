@@ -62,12 +62,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <strong>biaya</strong>
-                <input type="text" name="biaya" class="form-control" placeholder="BIAYA">
-            </div>
-        </div>
         <div class="col-md-5">
             <div class="form-group">
                 <strong>TGL Awal Sewa</strong>

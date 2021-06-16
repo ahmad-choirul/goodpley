@@ -105,7 +105,7 @@ class sewaController extends Controller
       'tgl_sewa' => $request->tgl_sewa,
       'id_penyewa' => $request->id_penyewa,
       'id_tennant' => $request->id_tennant,
-      'biaya' => $get->harga,
+      'biaya' => $bulan*$get->harga,
       'tgl_awal_sewa' => $request->tgl_awal_sewa,
       'tgl_akhir_sewa'     => $request->tgl_akhir_sewa
   ]);
@@ -115,7 +115,7 @@ class sewaController extends Controller
         'jenis_tagihan' => $jns_tagihan,
         'tgl_tagihan' => date("Y-m-d"),
         'deskripsi' => $deskripsi,
-        'nominal' => $get->harga,
+        'nominal' => $bulan*$get->harga,
         'status' => '1')
    );
     return redirect()->route('sewa.index')
@@ -161,7 +161,6 @@ class sewaController extends Controller
        'tgl_sewa' => 'required',
        'id_penyewa' => 'required',
        'id_tennant' => 'required',
-       'biaya' => 'required',
        'tgl_awal_sewa' => 'required',
        'tgl_akhir_sewa' => 'required',
        'status' => 'required',
