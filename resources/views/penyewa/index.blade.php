@@ -17,8 +17,8 @@
     <p>{{ $message }}</p>
 </div>
 @endif
-<div class="table"> 
-    <table class="table-responsive " style="white-space: nowrap; ">
+<div class="table-responsive"> 
+    <table class="table" style="color: black;white-space: nowrap;">
         <tr>
             <th width="20px" class="text-center">No</th>
             <th>Pemilik</th>
@@ -39,7 +39,9 @@
                 <td>{{ $post->ktp }}</td>
                 <td>{{ $post->nama_usaha }}</td>
                 <td>{{ $post->no_siup }}</td>
+
                 <td class="text-center">
+                     @if (auth()->user()->level != 2)
                     <form action="{{ route('penyewa.destroy',$post->id) }}" method="POST">
 
                         <a class="btn btn-info btn-sm" href="{{ route('penyewa.show',$post->id) }}">Show</a>
@@ -50,7 +52,11 @@
                         @method('DELETE')
 
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                         @else
+                          <a class="btn btn-info btn-sm" href="{{ route('penyewa.show',$post->id) }}">Show</a>
+                           @endif
                     </form>
+
                 </td>
             </tr>
             @endforeach
