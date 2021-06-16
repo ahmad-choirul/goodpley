@@ -19,7 +19,14 @@ class Sewa_AdvertiseController extends Controller
     public function index()
     {
         // $sewa_advertise = DB::table('sewa_advertise')->get();
-        $sewa_advertise = sewa_advertise::latest()->paginate(5);
+        // $sewa_advertise = sewa_advertise::latest()->paginate(5);
+         $sewa_advertise = DB::table('sewa_advertise')
+        ->select('sewa_advertise.*','penyewas.nama_pemilik','nama_advertise')
+        ->join('sewas', 'sewas.id', '=', 'sewa_advertise.id_sewa')
+        ->join('penyewas', 'penyewas.id', '=', 'sewas.id_penyewa')
+        ->join('advertise', 'advertise.id', '=', 'sewa_advertise.id_advertise')
+
+        ->get();
         return view('sewa_advertise.index',compact('sewa_advertise'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -84,8 +91,8 @@ $jns_tagihan =  "Biaya Sewa Iklan";
         'jenis_tagihan' => $jns_tagihan,
         'tgl_tagihan' => date("Y-m-d"),
         'deskripsi' => $deskripsi,
-        'nominal' => $get->harga,
-        'status' => '1')
+        'nominal' => $request->lama_sewa*$get->harga,
+        'status' => '0')
    );
         /// insert setiap request dari form ke dalam database via model
         /// jika menggunakan metode ini, maka nama field dan nama form harus sama
@@ -133,7 +140,7 @@ $jns_tagihan =  "Biaya Sewa Iklan";
             'id_advertise' => 'required',
             'tgl_mulai_sewa' => 'required',
             'lama_sewa' => 'required',
-            'id_users' => 'required'
+           
 
         ]);
         $sewa_advertise = sewa_advertise::where('id', $request->id)->update([
@@ -141,7 +148,7 @@ $jns_tagihan =  "Biaya Sewa Iklan";
             'id_advertise' => $request->id_advertise,
             'tgl_mulai_sewa' => $request->tgl_mulai_sewa,
             'lama_sewa' => $request->lama_sewa,
-            'id_users' => $request->id_users,
+            'status' => $request->status,
         ]);
         /// setelah berhasil mengubah data
         return redirect()->route('sewa_advertise.index')
