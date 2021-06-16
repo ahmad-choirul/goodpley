@@ -75,7 +75,10 @@
                   onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
               </form>
             @else
+<?php if ($post->status == '0'): ?>
               <a class="btn btn-primary btn-sm" href="{{ route('tagihan.form-bayar', $post->id) }}">Bayar</a>
+  
+<?php endif ?>
             @endif
           </td>
         </tr>
